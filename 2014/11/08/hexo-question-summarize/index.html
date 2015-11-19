@@ -13,7 +13,7 @@
 <meta property="og:description" content="昨天研究了一下Hexo在github上搭建个人博客的方法，参照了Hexo在github上构建免费的Web应用和hexo你的博客这两篇教程，终于算是对这个框架有了些许了解，感谢作者们的分享精神！教程写得比较详细，就不再赘述了。下面趁热打铁，把我遇到的问题总结一下。">
 <meta property="og:image" content="http://jayveestorage.qiniudn.com/QQ%E6%88%AA%E5%9B%BE20141107155113.png">
 <meta property="og:image" content="http://jayveestorage.qiniudn.com/图片外链36a113f975708ddb6d87c8001488a8e0_b.jpg">
-<meta property="og:updated_time" content="2015-01-27T07:17:36.000Z">
+<meta property="og:updated_time" content="2015-11-19T03:17:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Hexo建立Github Page——你可能会遇到的问题">
 <meta name="twitter:description" content="昨天研究了一下Hexo在github上搭建个人博客的方法，参照了Hexo在github上构建免费的Web应用和hexo你的博客这两篇教程，终于算是对这个框架有了些许了解，感谢作者们的分享精神！教程写得比较详细，就不再赘述了。下面趁热打铁，把我遇到的问题总结一下。">
@@ -57,6 +57,11 @@
 							<div class="ribbon"></div>
 						</div>
 						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
 						
 					</div>
 					
@@ -66,6 +71,8 @@
 					<ul class="tips-inner">
 						<li>菜单</li>
 						<li>标签</li>
+						
+						<li>友情链接</li>
 						
 						
 					</ul>
@@ -94,6 +101,8 @@
 					        
 								<a class="weibo" target="_blank" href="http://weibo.com/1692530220" title="weibo">weibo</a>
 					        
+								<a class="facebook" target="_blank" href="https://www.facebook.com/jayveehe" title="facebook">facebook</a>
+					        
 						</div>
 					</nav>
 				</section>
@@ -106,6 +115,16 @@
 				</section>
 				
 				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://wangzi6147.github.io">wangzi的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://lujiaying.github.io">lujiaying的博客</a>
+			        
+			        </div>
+				</section>
 				
 
 				
@@ -149,6 +168,8 @@
 						<a class="github" target="_blank" href="https://github.com/Jayveehe" title="github">github</a>
 			        
 						<a class="weibo" target="_blank" href="http://weibo.com/1692530220" title="weibo">weibo</a>
+			        
+						<a class="facebook" target="_blank" href="https://www.facebook.com/jayveehe" title="facebook">facebook</a>
 			        
 				</div>
 			</nav>
@@ -197,8 +218,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="http://jayveestorage.qiniudn.com/QQ%E6%88%AA%E5%9B%BE20141107155113.png" alt=""><br>昨天研究了一下<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>在github上搭建个人博客的方法，参照了<a href="http://blog.fens.me/hexo-blog-github/" target="_blank" rel="external">Hexo在github上构建免费的Web应用</a>和<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客</a>这两篇教程，终于算是对这个框架有了些许了解，感谢作者们的分享精神！教程写得比较详细，就不再赘述了。下面趁热打铁，把我遇到的问题总结一下。<a id="more"></a></p>
-<p>###目录：</p>
-<ol>
+<h3 id="目录：">目录：</h3><ol>
 <li>如何构建最简单的Github Page？</li>
 <li>Hexo使用中的细节问题</li>
 <li>Hexo的主题修改</li>
@@ -206,35 +226,33 @@
 <li>Markdown相关</li>
 </ol>
 <hr>
-<p>#<strong>如何构建最简单的Github Page？</strong><br>按照我的理解，<a href="https://pages.github.com/" target="_blank" rel="external">Github Page</a>分为两类：一是为<em>个人</em>或<em>组织(Organization)</em>建立page，二是为<em>项目(repo)</em>建立page。<br>为个人或组织建立page，只要建立一个名字为<em>[name]</em>.github.io的库，并在<code>master</code>分支中添加index.html或index.md即可。需要注意的是，此处的<em>[name]</em>为个人或组织的名称，应该是<strong>区分大小写</strong>的，例如：我的github账号名为Jayveehe，则建立一个名为JayveeHe.github.io的库（它的详细地址为JayveeHe/JayveeHe.github.io）。第一次创建10分钟左右即可访问<a href="http://jayveehe.github.io/">http://jayveehe.github.io/</a> 查看index的内容，太急的话会出现404，这应该是github服务器给page做DNS时应有的一定延迟吧。<br>对于建立项目的page，则在该项目下创建一个<code>gh-pages</code>分支，添加index.html或index.md即可，访问的地址则变为:<strong>[name]</strong>.github.io/<strong>[projecName]</strong><br>所以通俗地说，Github Page的原理就是，系统会检查你特定名称的库或分支，给每个用户分配一个地址用于访问github page，如果有index.html或.md文件则显示其内容。</p>
-<p>#<strong>Hexo使用中的细节问题</strong><br>了解了Github Page的基本原理后，为了做漂亮的博客，我们需要找到一个能够帮助我们生成静态页面的框架，官方推荐使用<a href="http://jekyllrb.com/" target="_blank" rel="external">Jekyll</a>，而我们使用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>。<br>安装和使用Hexo的教程参考上面提到的两个博客即可，我说说遇到的问题：</p>
-<p>###<strong>1. 问题</strong>：在命令行输入<code>hexo d</code>会出现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: spawn ENOENT&#10;    at errnoException (child_process.js:980:11)&#10;    at Process.ChildProcess._handle.onexit (child_process.js:771:34)</span><br></pre></td></tr></table></figure></p>
+<h1 id="如何构建最简单的Github_Page？"><strong>如何构建最简单的Github Page？</strong></h1><p>按照我的理解，<a href="https://pages.github.com/" target="_blank" rel="external">Github Page</a>分为两类：一是为<em>个人</em>或<em>组织(Organization)</em>建立page，二是为<em>项目(repo)</em>建立page。<br>为个人或组织建立page，只要建立一个名字为<em>[name]</em>.github.io的库，并在<code>master</code>分支中添加index.html或index.md即可。需要注意的是，此处的<em>[name]</em>为个人或组织的名称，应该是<strong>区分大小写</strong>的，例如：我的github账号名为Jayveehe，则建立一个名为JayveeHe.github.io的库（它的详细地址为JayveeHe/JayveeHe.github.io）。第一次创建10分钟左右即可访问<a href="http://jayveehe.github.io/">http://jayveehe.github.io/</a> 查看index的内容，太急的话会出现404，这应该是github服务器给page做DNS时应有的一定延迟吧。<br>对于建立项目的page，则在该项目下创建一个<code>gh-pages</code>分支，添加index.html或index.md即可，访问的地址则变为:<strong>[name]</strong>.github.io/<strong>[projecName]</strong><br>所以通俗地说，Github Page的原理就是，系统会检查你特定名称的库或分支，给每个用户分配一个地址用于访问github page，如果有index.html或.md文件则显示其内容。</p>
+<h1 id="Hexo使用中的细节问题"><strong>Hexo使用中的细节问题</strong></h1><p>了解了Github Page的基本原理后，为了做漂亮的博客，我们需要找到一个能够帮助我们生成静态页面的框架，官方推荐使用<a href="http://jekyllrb.com/" target="_blank" rel="external">Jekyll</a>，而我们使用<a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>。<br>安装和使用Hexo的教程参考上面提到的两个博客即可，我说说遇到的问题：</p>
+<h3 id="1-_问题：在命令行输入hexo_d会出现"><strong>1. 问题</strong>：在命令行输入<code>hexo d</code>会出现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: spawn ENOENT&#10;    at errnoException (child_process.js:980:11)&#10;    at Process.ChildProcess._handle.onexit (child_process.js:771:34)</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>解决</strong>：我的原因是当初安装git的时候没有选择将git命令嵌入<code>cmd</code>中，而是单独使用<code>git bash</code>，导致在命令行中使用hexo自带的部署功能会出现无法调用git的情况。解决方法就是在<code>git bash</code>中使用<code>hexo</code>的命令。</p>
 </blockquote>
 <hr>
-<p>###<strong>2. 问题</strong>：<code>hexo g</code>或<code>hexo s</code>的时候出现错误，无法生成静态页面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[error] &#123; name: &#39;HexoError&#39;,&#10;  reason: &#39;can not read a block mapping entry; a multiline key may not be an imp&#10;licit key&#39;,</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-_问题：hexo_g或hexo_s的时候出现错误，无法生成静态页面"><strong>2. 问题</strong>：<code>hexo g</code>或<code>hexo s</code>的时候出现错误，无法生成静态页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[error] &#123; name: &#39;HexoError&#39;,&#10;  reason: &#39;can not read a block mapping entry; a multiline key may not be an imp&#10;licit key&#39;,</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><strong>解决</strong>：再次检查根目录<code>_config.yml</code>里面，各项参数的冒号后面一定要先加一个空格再填值。还有问题的话就具体分析了……</p>
 </blockquote>
 <hr>
-<p>###<strong>3. 问题</strong>：<code>hexo s</code>或者<code>hexo d -g</code>发布网站后，访问出现<img src="http://jayveestorage.qiniudn.com/图片外链36a113f975708ddb6d87c8001488a8e0_b.jpg" alt=""></p>
-<blockquote>
+<h3 id="3-_问题：hexo_s或者hexo_d_-g发布网站后，访问出现"><strong>3. 问题</strong>：<code>hexo s</code>或者<code>hexo d -g</code>发布网站后，访问出现<img src="http://jayveestorage.qiniudn.com/图片外链36a113f975708ddb6d87c8001488a8e0_b.jpg" alt=""></h3><blockquote>
 <p><strong>解决</strong>：某些版本的Hexo（比如我用的2.8.3版本）好像没有添加<code>hexo-renderer-ejs</code> <code>hexo-renderer-marked</code> <code>hexo-renderer-stylus</code> 这几个插件，导致渲染有问题。到博客根目录运行<code>npm install XXX(插件名) --save</code> 安装完毕后应该就OK了，感谢知乎网友<a href="http://www.zhihu.com/people/buffalo" target="_blank" rel="external">waterox</a>的<a href="http://www.zhihu.com/question/23999043/answer/26581991" target="_blank" rel="external">解答</a>。</p>
 </blockquote>
 <hr>
-<p>###<strong>4. 问题</strong>：如何在文章中设置<em>阅读更多</em>的断点？</p>
-<blockquote>
+<h3 id="4-_问题：如何在文章中设置阅读更多的断点？"><strong>4. 问题</strong>：如何在文章中设置<em>阅读更多</em>的断点？</h3><blockquote>
 <p><strong>解决</strong>：编辑文章时，在想要设置断点的地方输入<code>&lt;!--more--&gt;</code>即可，想要修改<em>阅读更多</em>这个文字的话，就在相应主题文件夹里的<code>_config.yml</code>文件中修改<code>excerpt_link: more</code> 这个属性值即可。</p>
 </blockquote>
 <hr>
-<p>#<strong>Hexo的主题修改</strong><br>Hexo根据一定的脚本（或者说模块）进行静态网站生成，<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">主题</a>(Themes)就是这些脚本的集合，想要自定义自己的博客布局，需要一些前端的知识。对于每个主题的布局，修改<code>layout</code>文件夹下的文件即可，具体的主题需要具体分析。值得一提的是，在Hexo中进行<code>new</code>操作时，里面有个<code>[layout]</code>参数，这里可以不填（默认为post），也可以填入<code>layout</code>文件夹下相应的<code>.ejs</code>文件名，这样会按照里面设定的模板进行文件创建了。<br>如果想要更全面的定制自己的主题，可以看看<a href="http://blog.gfdsa.net/2013/04/09/hexo/hexolessontwo/" target="_blank" rel="external">这篇</a>，同时学习一下默认的模板语言 <a href="https://github.com/tj/ejs" target="_blank" rel="external">EJS</a>和<a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a>，接下来就尽情发挥你的想象吧，祝你成功。</p>
-<p>#<strong>图床相关</strong><br>在博客中插入图片需要填url，一般我们可以在博客根目录下的<code>source</code>文件夹中放入所需图片，直接填相对路径就可以了。但是这样文件是存储在Github服务器上的，国内访问有可能不是特别快，我们可以利用以下方法：</p>
+<h1 id="Hexo的主题修改"><strong>Hexo的主题修改</strong></h1><p>Hexo根据一定的脚本（或者说模块）进行静态网站生成，<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">主题</a>(Themes)就是这些脚本的集合，想要自定义自己的博客布局，需要一些前端的知识。对于每个主题的布局，修改<code>layout</code>文件夹下的文件即可，具体的主题需要具体分析。值得一提的是，在Hexo中进行<code>new</code>操作时，里面有个<code>[layout]</code>参数，这里可以不填（默认为post），也可以填入<code>layout</code>文件夹下相应的<code>.ejs</code>文件名，这样会按照里面设定的模板进行文件创建了。<br>如果想要更全面的定制自己的主题，可以看看<a href="http://blog.gfdsa.net/2013/04/09/hexo/hexolessontwo/" target="_blank" rel="external">这篇</a>，同时学习一下默认的模板语言 <a href="https://github.com/tj/ejs" target="_blank" rel="external">EJS</a>和<a href="http://learnboost.github.io/stylus/" target="_blank" rel="external">Stylus</a>，接下来就尽情发挥你的想象吧，祝你成功。</p>
+<h1 id="图床相关"><strong>图床相关</strong></h1><p>在博客中插入图片需要填url，一般我们可以在博客根目录下的<code>source</code>文件夹中放入所需图片，直接填相对路径就可以了。但是这样文件是存储在Github服务器上的，国内访问有可能不是特别快，我们可以利用以下方法：</p>
 <ol>
 <li>使用新浪微博的相册功能，新建一个外链专用相册（当然你可以把它设为私密的），上传想要使用的图片到相册中，查看大图获取URL。这个方法的访问速度不错，流量限制应该比较宽松，但是可能操作有些麻烦。</li>
 <li>很多地方推荐的<a href="http://www.qiniu.com/" target="_blank" rel="external">七牛云存储</a>，注册用户每月免费1G流量，如果进行用户认证可以免费获取10G/月的流量，并且可以很方便地进行图片处理等操作，本人目前在用。</li>
 </ol>
-<p>#<strong>Markdown相关</strong><br>给几个不错的Markdown语法教程：</p>
+<h1 id="Markdown相关"><strong>Markdown相关</strong></h1><p>给几个不错的Markdown语法教程：</p>
 <ol>
 <li><a href="http://www.jianshu.com/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南</a></li>
 <li><a href="http://www.jianshu.com/p/0752bd0418df" target="_blank" rel="external">Markdown语法纪要</a></li>
