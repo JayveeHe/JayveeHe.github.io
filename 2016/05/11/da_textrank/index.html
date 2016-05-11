@@ -6,18 +6,18 @@
   <title>基于TextRank的中文摘要工具 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近需要做一些文本摘要的东西，选取了TextRank（论文参见《TextRank: Bringing Order into Texts》）作为对比方案，该方案可以很方便的使用Python相关库进行实现。
-下面简单介绍如何利用Python的一些工具库实现一个简单的文本摘要工具。">
+下面介绍如何利用Python实现一个简单的文本摘要工具。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于TextRank的中文摘要工具">
-<meta property="og:url" content="http://Jayveehe.github.io/2016/05/11/da_api_demo/index.html">
+<meta property="og:url" content="http://Jayveehe.github.io/2016/05/11/da_textrank/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
 <meta property="og:description" content="最近需要做一些文本摘要的东西，选取了TextRank（论文参见《TextRank: Bringing Order into Texts》）作为对比方案，该方案可以很方便的使用Python相关库进行实现。
-下面简单介绍如何利用Python的一些工具库实现一个简单的文本摘要工具。">
-<meta property="og:updated_time" content="2016-05-11T16:45:14.000Z">
+下面介绍如何利用Python实现一个简单的文本摘要工具。">
+<meta property="og:updated_time" content="2016-05-11T17:20:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于TextRank的中文摘要工具">
 <meta name="twitter:description" content="最近需要做一些文本摘要的东西，选取了TextRank（论文参见《TextRank: Bringing Order into Texts》）作为对比方案，该方案可以很方便的使用Python相关库进行实现。
-下面简单介绍如何利用Python的一些工具库实现一个简单的文本摘要工具。">
+下面介绍如何利用Python实现一个简单的文本摘要工具。">
   
     <link rel="alternative" href="/atom.xml" title="Jayvee&#39;s Blog" type="application/atom+xml">
   
@@ -185,10 +185,10 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-da_api_demo" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-da_textrank" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/05/11/da_api_demo/" class="article-date">
+      <a href="/2016/05/11/da_textrank/" class="article-date">
   	<time datetime="2016-05-11T09:08:00.000Z" itemprop="datePublished">May 11 2016</time>
 </a>
     </div>
@@ -227,108 +227,37 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近需要做一些文本摘要的东西，选取了TextRank（论文参见<a href="http://web.eecs.umich.edu/%7Emihalcea/papers/mihalcea.emnlp04.pdf" target="_blank" rel="external">《TextRank: Bringing Order into Texts》</a>）作为对比方案，该方案可以很方便的使用Python相关库进行实现。</p>
-<p>下面简单介绍如何利用Python的一些工具库实现一个简单的文本摘要工具。</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="前期准备："><a href="#前期准备：" class="headerlink" title="前期准备："></a>前期准备：</h2><ol>
+<p>下面介绍如何利用Python实现一个简单的文本摘要工具。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="【前期准备】："><a href="#【前期准备】：" class="headerlink" title="【前期准备】："></a>【前期准备】：</h2><ol>
 <li>Python 2.7.x - 当然也推荐Python3，少掉很多编码问题。信仰选2！</li>
 <li><a href="https://github.com/fxsjy/jieba" target="_blank" rel="external">jieba分词</a> - 最好的python中文分词工具（最新清华出了个<a href="http://thulac.thunlp.org" target="_blank" rel="external">THULAC</a>，有兴趣的可以试试，看对比效果似乎更好）</li>
 <li><a href="https://github.com/networkx/networkx" target="_blank" rel="external">networkx</a> - 一个非常棒的复杂网络工具库</li>
 </ol>
-<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><p>利用Textrank做文本摘要的核心思想很简单，和著名的网页排名算法<a href="https://zh.wikipedia.org/wiki/PageRank" target="_blank" rel="external">PageRank</a>类似：每个句子可以作为一个网络中的节点（称为<code>节点i</code>），与之相连的其他节点（例如<code>节点j</code>）会对其<code>重要度</code>产生一定的“贡献值”，该“贡献值”与<code>节点j</code>自身的<code>重要度</code>以及i、j之间的相似度（也可以称为连接的强度）有关，只需要对整个图进行迭代直至收敛，最后各节点的分值即是该句子的重要性，根据重要性排序后选取前k个句子即可作为摘要。</p>
-<h2 id="基于Textrank的文本摘要实现步骤："><a href="#基于Textrank的文本摘要实现步骤：" class="headerlink" title="基于Textrank的文本摘要实现步骤："></a>基于Textrank的文本摘要实现步骤：</h2><h3 id="一、对文本进行分句"><a href="#一、对文本进行分句" class="headerlink" title="一、对文本进行分句"></a>一、对文本进行分句</h3><p>假设只处理中文文本，则采取句号或换行符作为分句准则：</p>
-<pre><code>def split_sentences(full_text):
-    sents = re.split(u&apos;[\n。]&apos;, full_text)
-    sents = [sent for sent in sents if len(sent) &gt; 0]  # 去除只包含\n或空白符的句子
-    return sents
-</code></pre><h3 id="二、句子相似度的计算"><a href="#二、句子相似度的计算" class="headerlink" title="二、句子相似度的计算"></a>二、句子相似度的计算</h3><p>Textrank的原始论文中，句子相似度是基于两个句子的共现词的个数计算的，在此沿用论文的公式：</p>
+<h2 id="【背景知识】"><a href="#【背景知识】" class="headerlink" title="【背景知识】"></a>【背景知识】</h2><p>利用Textrank做文本摘要的核心思想很简单，和著名的网页排名算法<a href="https://zh.wikipedia.org/wiki/PageRank" target="_blank" rel="external">PageRank</a>类似：每个句子可以作为一个网络中的节点（称为<code>节点i</code>），与之相连的其他节点（例如<code>节点j</code>）会对其<code>重要度</code>产生一定的“贡献值”，该“贡献值”与<code>节点j</code>自身的<code>重要度</code>以及i、j之间的<code>相似度</code>（也可以称为连接的强度）有关，只需要对整个图进行迭代直至收敛，最后各节点的分值即是该句子的重要性，根据重要性排序后选取前k个句子即可作为摘要。</p>
+<h2 id="【基于Textrank的文本摘要实现步骤】"><a href="#【基于Textrank的文本摘要实现步骤】" class="headerlink" title="【基于Textrank的文本摘要实现步骤】"></a>【基于Textrank的文本摘要实现步骤】</h2><h3 id="一、对文本进行分句"><a href="#一、对文本进行分句" class="headerlink" title="一、对文本进行分句"></a>一、对文本进行分句</h3><p>假设只处理中文文本，则采取句号或换行符作为分句准则：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_sentences</span><span class="params">(full_text)</span>:</span></span><br><span class="line">    sents = re.split(<span class="string">u'[\n。]'</span>, full_text)</span><br><span class="line">    sents = [sent <span class="keyword">for</span> sent <span class="keyword">in</span> sents <span class="keyword">if</span> len(sent) &gt; <span class="number">0</span>]  <span class="comment"># 去除只包含\n或空白符的句子</span></span><br><span class="line">    <span class="keyword">return</span> sents</span><br></pre></td></tr></table></figure></p>
+<h3 id="二、句子相似度的计算"><a href="#二、句子相似度的计算" class="headerlink" title="二、句子相似度的计算"></a>二、句子相似度的计算</h3><p>Textrank的原始论文中，句子相似度是基于两个句子的共现词的个数计算的，在此沿用论文的公式：</p>
 <p>$$Similarity(S_i,S_j)=\frac{\{w_k|{w_k}\in{S_i}\&amp;{w_k}\in{S_j}\}}{log(S_i)+log(S_j)}$$</p>
-<p>实现时，采用共现词计数进行相似度计算，输入的是每个句子的terms，以避免重复分词。代码如下：</p>
-<pre><code>def cal_sim(wordlist1, wordlist2):
-    &quot;&quot;&quot;
-    给定两个句子的词列表，计算句子相似度。计算公式参考Textrank论文
-    :param wordlist1:
-    :param wordlist2:
-    :return:
-    &quot;&quot;&quot;
-    co_occur_sum = 0
-    wordset1 = list(set(wordlist1))
-    wordset2 = list(set(wordlist2))
-    for word in wordset1:
-        if word in wordset2:
-            co_occur_sum += 1.0
-    if co_occur_sum &lt; 1e-12:  # 防止出现0的情况
-        return 0.0
-    denominator = math.log(len(wordset1)) + math.log(len(wordset2))
-    if abs(denominator) &lt; 1e-12:
-        return 0.0
-    return co_occur_sum / denominator
-</code></pre><h3 id="三、运用networkx工具库进行pagerank迭代"><a href="#三、运用networkx工具库进行pagerank迭代" class="headerlink" title="三、运用networkx工具库进行pagerank迭代"></a>三、运用networkx工具库进行pagerank迭代</h3><p>利用<code>networkx</code>库创建一个graph实例，调用networkx的pagerank方法对graph实例进行处理即可，需要注意的是，networkx有三种pagerank的实现，分别是<code>pagerank</code>、<code>pagerank_numpy</code>和<code>pagerank_scipy</code>，从名称可以看出来它们分别采用了不同的底层实现，此处我们任选其一即可。代码如下：</p>
-<pre><code>def text_rank(sentences, num=10, pagerank_config={&apos;alpha&apos;: 0.85, }):
-    &quot;&quot;&quot;将句子按照关键程度从大到小排序
-
-    Keyword arguments:
-    sentences         --  列表，元素是句子
-    words             --  二维列表，子列表和sentences中的句子对应，子列表由单词组成
-    sim_func          --  计算两个句子的相似性，参数是两个由单词组成的列表
-    pagerank_config   --  pagerank的设置
-    &quot;&quot;&quot;
-    sorted_sentences = []
-    sentences_num = len(sentences)
-    wordlist = []  # 存储wordlist避免重复分词，其中wordlist的顺序与sentences对应
-    for sent in sentences:
-        tmp = []
-        cur_res = jieba.cut(sent)
-        for i in cur_res:
-            tmp.append(i)
-        wordlist.append(tmp)
-    graph = np.zeros((sentences_num, sentences_num))
-    for x in xrange(sentences_num):
-        for y in xrange(x, sentences_num):
-            similarity = cal_sim(wordlist[x], wordlist[y])
-            graph[x, y] = similarity
-            graph[y, x] = similarity
-
-    nx_graph = nx.from_numpy_matrix(graph)
-    nx.pagerank_scipy()
-    nx.pagerank_numpy()
-    scores = nx.pagerank(nx_graph, **pagerank_config)  # this is a dict
-    sorted_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True)
-
-    for index, score in sorted_scores:
-        item = {&quot;sent&quot;: sentences[index], &apos;score&apos;: score, &apos;index&apos;: index}
-        sorted_sentences.append(item)
-
-    return sorted_sentences[:num]
-</code></pre><p>上面的<code>text_rank</code>函数返回的结果中即包含了num句关键句子，可以作为组成摘要的基础。</p>
+<p>实现时，采用共现词计数进行相似度计算，输入的是每个句子的terms，以避免重复分词。代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_sim</span><span class="params">(wordlist1, wordlist2)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    给定两个句子的词列表，计算句子相似度。计算公式参考Textrank论文</span><br><span class="line">    :param wordlist1:</span><br><span class="line">    :param wordlist2:</span><br><span class="line">    :return:</span><br><span class="line">    """</span></span><br><span class="line">    co_occur_sum = <span class="number">0</span></span><br><span class="line">    wordset1 = list(set(wordlist1))</span><br><span class="line">    wordset2 = list(set(wordlist2))</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> wordset1:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> wordset2:</span><br><span class="line">            co_occur_sum += <span class="number">1.0</span></span><br><span class="line">    <span class="keyword">if</span> co_occur_sum &lt; <span class="number">1e-12</span>:  <span class="comment"># 防止出现0的情况</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.0</span></span><br><span class="line">    denominator = math.log(len(wordset1)) + math.log(len(wordset2))</span><br><span class="line">    <span class="keyword">if</span> abs(denominator) &lt; <span class="number">1e-12</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0.0</span></span><br><span class="line">    <span class="keyword">return</span> co_occur_sum / denominator</span><br></pre></td></tr></table></figure></p>
+<h3 id="三、运用networkx工具库进行pagerank迭代"><a href="#三、运用networkx工具库进行pagerank迭代" class="headerlink" title="三、运用networkx工具库进行pagerank迭代"></a>三、运用networkx工具库进行pagerank迭代</h3><p>利用<code>networkx</code>库创建一个graph实例，调用networkx的pagerank方法对graph实例进行处理即可，需要注意的是，networkx有三种pagerank的实现，分别是<code>pagerank</code>、<code>pagerank_numpy</code>和<code>pagerank_scipy</code>，从名称可以看出来它们分别采用了不同的底层实现，此处我们任选其一即可。代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">text_rank</span><span class="params">(sentences, num=<span class="number">10</span>, pagerank_config=&#123;<span class="string">'alpha'</span>: <span class="number">0.85</span>, &#125;)</span>:</span></span><br><span class="line">    <span class="string">"""将句子按照关键程度从大到小排序</span><br><span class="line"></span><br><span class="line">    Keyword arguments:</span><br><span class="line">    sentences         --  列表，元素是句子</span><br><span class="line">    words             --  二维列表，子列表和sentences中的句子对应，子列表由单词组成</span><br><span class="line">    sim_func          --  计算两个句子的相似性，参数是两个由单词组成的列表</span><br><span class="line">    pagerank_config   --  pagerank的设置</span><br><span class="line">    """</span></span><br><span class="line">    sorted_sentences = []</span><br><span class="line">    sentences_num = len(sentences)</span><br><span class="line">    wordlist = []  <span class="comment"># 存储wordlist避免重复分词，其中wordlist的顺序与sentences对应</span></span><br><span class="line">    <span class="keyword">for</span> sent <span class="keyword">in</span> sentences:</span><br><span class="line">        tmp = []</span><br><span class="line">        cur_res = jieba.cut(sent)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> cur_res:</span><br><span class="line">            tmp.append(i)</span><br><span class="line">        wordlist.append(tmp)</span><br><span class="line">    graph = np.zeros((sentences_num, sentences_num))</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xrange(sentences_num):</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> xrange(x, sentences_num):</span><br><span class="line">            similarity = cal_sim(wordlist[x], wordlist[y])</span><br><span class="line">            graph[x, y] = similarity</span><br><span class="line">            graph[y, x] = similarity</span><br><span class="line"></span><br><span class="line">    nx_graph = nx.from_numpy_matrix(graph)</span><br><span class="line">    scores = nx.pagerank(nx_graph, **pagerank_config)  <span class="comment"># this is a dict</span></span><br><span class="line">    sorted_scores = sorted(scores.items(), key=<span class="keyword">lambda</span> item: item[<span class="number">1</span>], reverse=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> index, score <span class="keyword">in</span> sorted_scores:</span><br><span class="line">        item = &#123;<span class="string">"sent"</span>: sentences[index], <span class="string">'score'</span>: score, <span class="string">'index'</span>: index&#125;</span><br><span class="line">        sorted_sentences.append(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sorted_sentences[:num]</span><br></pre></td></tr></table></figure>
+<p>上面的<code>text_rank</code>函数返回的结果中即包含了num句关键句子，可以作为组成摘要的基础。</p>
 <h3 id="四、重新组织摘要"><a href="#四、重新组织摘要" class="headerlink" title="四、重新组织摘要"></a>四、重新组织摘要</h3><p>由<code>text_rank</code>得到的前k个句子，只能表示这几个句子很重要，然而他们在逻辑上很难串联起来。如何重组织摘要，在学术界也是一大研究热点。根据不同的处理粒度（句子级、字词级）和不同的处理思路（根据语义重组还是改变现有词句的顺序），生成的摘要在阅读性上有很大的不同。<br>在此为了简便，选取最简单的，根据句子在文章中出现的顺序对<code>text_rank</code>结果进行重排序。代码如下：</p>
-<pre><code>def extract_abstracts(full_text, sent_num=10):
-    &quot;&quot;&quot;
-    摘要提取的入口函数，并根据textrank结果进行摘要组织
-    :param full_text:
-    :param sent_num:
-    :return:
-    &quot;&quot;&quot;
-    sents = split_sentences(full_text)
-    trank_res = text_rank(sents, num=sent_num)
-    sorted_res = sorted(trank_res, key=lambda x: x[&apos;index&apos;], reverse=False)
-    return sorted_res
-</code></pre><hr>
-<h4 id="至此，一个精简版的基于TextRank的文本摘要工具就完成了。"><a href="#至此，一个精简版的基于TextRank的文本摘要工具就完成了。" class="headerlink" title="至此，一个精简版的基于TextRank的文本摘要工具就完成了。"></a><strong>至此，一个精简版的基于TextRank的文本摘要工具就完成了。</strong></h4><h2 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a>测试结果</h2><p>选取好奇心日报上的一则新闻《<a href="http://www.qdaily.com/articles/26710.html" target="_blank" rel="external">中国公司在和 AC 米兰谈收购，但成不成是另一回事</a>》，将文本输入<code>extract_abstracts()</code>：</p>
-<pre><code>if __name__ == &apos;__main__&apos;:
-    raw_text = codecs.open(&apos;/Users/jayvee/github_project/DocumentsAbstractProject/static/text&apos;, &apos;r&apos;, &apos;utf8&apos;).read()
-    res = extract_abstracts(raw_text, sent_num=5)
-    for s in res:
-        print s[&apos;score&apos;], s[&apos;sent&apos;]
-</code></pre><p>所得结果为：  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">extract_abstracts</span><span class="params">(full_text, sent_num=<span class="number">10</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span><br><span class="line">    摘要提取的入口函数，并根据textrank结果进行摘要组织</span><br><span class="line">    :param full_text:</span><br><span class="line">    :param sent_num:</span><br><span class="line">    :return:</span><br><span class="line">    """</span></span><br><span class="line">    sents = split_sentences(full_text)</span><br><span class="line">    trank_res = text_rank(sents, num=sent_num)</span><br><span class="line">    sorted_res = sorted(trank_res, key=<span class="keyword">lambda</span> x: x[<span class="string">'index'</span>], reverse=<span class="keyword">False</span>)</span><br><span class="line">    <span class="keyword">return</span> sorted_res</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="至此，一个精简版的基于TextRank的文本摘要工具就完成了。"><a href="#至此，一个精简版的基于TextRank的文本摘要工具就完成了。" class="headerlink" title="至此，一个精简版的基于TextRank的文本摘要工具就完成了。"></a><strong>至此，一个精简版的基于TextRank的文本摘要工具就完成了。</strong></h4><h2 id="【测试结果】"><a href="#【测试结果】" class="headerlink" title="【测试结果】"></a>【测试结果】</h2><p>选取好奇心日报上的一则新闻《<a href="http://www.qdaily.com/articles/26710.html" target="_blank" rel="external">中国公司在和 AC 米兰谈收购，但成不成是另一回事</a>》，将文本输入<code>extract_abstracts()</code>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    raw_text = codecs.open(<span class="string">'/Users/jayvee/github_project/DocumentsAbstractProject/static/text'</span>, <span class="string">'r'</span>, <span class="string">'utf8'</span>).read()</span><br><span class="line">    res = extract_abstracts(raw_text, sent_num=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">for</span> s <span class="keyword">in</span> res:</span><br><span class="line">        <span class="keyword">print</span> s[<span class="string">'score'</span>], s[<span class="string">'sent'</span>]</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>所得结果为：  </p>
 <pre><code>0.0742110929605 传了两个月的中国公司要收购 AC 米兰的事情终于有了一个确切的消息，拥有 AC 米兰俱乐部股权的 Fininvest 公司官方正式确认正在和一家来自中国的企业商谈俱乐部股权出售事宜
 0.0697076855554 2015 年 11 月，AC 米兰老板贝卢斯科尼访华，并称就美丽之冠绿卡收购 AC 米兰一定数量的股权一事达成了合作意向，然而这件事也就此没了下文
 0.0693598701975 一年多前，曾有泰国财团为 AC 米兰开出了 5 亿欧元收购 48% 的股份的价码，这意味着当时 AC 米兰的估值为 10 亿欧元
 0.0685480949813 根据 AC 米兰官网上的数据，这家俱乐部从 2007 年开始就一直处在净亏损的状态中，2014 年的亏损额接近 1 亿欧元，更是创下了历史新高
 0.0701256108461 如果 AC 米兰真的被中国人买下来了，那么在这个买家看来，他买下来的也绝不仅仅只是一个足球俱乐部而已
 </code></pre><p><del>看上去还行</del></p>
-<h2 id="TODOs-amp-相关阅读"><a href="#TODOs-amp-相关阅读" class="headerlink" title="TODOs&amp;相关阅读"></a>TODOs&amp;相关阅读</h2><ol>
+<h2 id="【TODOs-amp-相关阅读】"><a href="#【TODOs-amp-相关阅读】" class="headerlink" title="【TODOs&amp;相关阅读】"></a>【TODOs&amp;相关阅读】</h2><ol>
 <li>可以看出，本套方案第一个可修改的地方是句子间相似度的计算，如何精确衡量句子之间的语义相似度，是NLP的另一个坑。（可以用TF-IDF或词向量相加的方式生成句子向量并求cosine相似度，或者一些基于神经网络的方法）</li>
 <li>TextRank同期的也是基于图结构的rank算法<a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwiA8MiKttLMAhVS0WMKHfLcDSIQFggdMAA&amp;url=http%3A%2F%2Fwww.cs.cmu.edu%2Fafs%2Fcs%2Fproject%2Fjair%2Fpub%2Fvolume22%2Ferkan04a-html%2Ferkan04a.html&amp;usg=AFQjCNHDCgWWXl83W7qvBe5FCTRvNGyR6g&amp;sig2=7Fbk5oymRFalJO2spjJ4dA" target="_blank" rel="external">LexRank（参见论文）</a>即是在相似性的计算上有所区别，采用了一些词法上特征进行相似度计算，有兴趣的读者可以参考。</li>
 </ol>
+<hr>
+<p><em>转载请注明原处<br><a href="http://jayveehe.github.io/2016/05/11/da_api_demo/">http://jayveehe.github.io/2016/05/11/da_api_demo/</a></em></p>
 
       
     </div>
@@ -376,7 +305,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="da_api_demo" data-title="基于TextRank的中文摘要工具" data-url="http://Jayveehe.github.io/2016/05/11/da_api_demo/"></div>
+	<div class="ds-thread" data-thread-key="da_textrank" data-title="基于TextRank的中文摘要工具" data-url="http://Jayveehe.github.io/2016/05/11/da_textrank/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
