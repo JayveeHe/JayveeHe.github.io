@@ -3,10 +3,96 @@
 
 
     
+  <url>
+    <loc>http://Jayveehe.github.io/2016/05/11/da_api_demo/</loc>
+    <lastmod>2016-05-11T16:45:14.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于TextRank的中文摘要工具</title>
+        <pubTime>2016-05-11T09:08:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>NLP</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+          
+             
+              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Jayveehe.github.io/2015/01/04/ipv6/</loc>
+    <lastmod>2016-05-11T16:42:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>IPV6下利用GoAgent回避校园网收费</title>
+        <pubTime>2015-01-04T12:34:00.000Z</pubTime>
+        
+        <tag>CS相关</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Jayveehe.github.io/2014/11/08/hexo-question-summarize/</loc>
+    <lastmod>2016-05-11T16:40:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>用Hexo建立Github Page——你可能会遇到的问题</title>
+        <pubTime>2014-11-07T16:34:00.000Z</pubTime>
+        
+        <tag>CS相关</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Jayveehe.github.io/2015/01/26/nginx-flask/</loc>
+    <lastmod>2016-05-11T16:40:26.000Z</lastmod>
+    <data>
+        <display>
+        <title>微信公众平台接入初探</title>
+        <pubTime>2015-01-26T09:50:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://Jayveehe.github.io/2015/12/26/shooooty-md/</loc>
-    <lastmod>2015-12-26T10:05:22.000Z</lastmod>
+    <lastmod>2016-05-11T16:40:07.000Z</lastmod>
     <data>
         <display>
         <title>Shooooty——在你想到的任何网站玩弹幕</title>
@@ -21,70 +107,13 @@
          
            
              
-              <breadCrumb title="CS" url="http://Jayveehe.github.io/categories/CS/"/>
+              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
           
         </display>
     </data>
     </url>
 
     
-  <url>
-    <loc>http://Jayveehe.github.io/2015/01/26/nginx-flask/</loc>
-    <lastmod>2015-12-16T03:45:17.000Z</lastmod>
-    <data>
-        <display>
-        <title>微信公众平台接入初探</title>
-        <pubTime>2015-01-26T09:50:43.000Z</pubTime>
-        
-        <tag>CS相关</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>Python</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Jayveehe.github.io/2014/11/08/hexo-question-summarize/</loc>
-    <lastmod>2015-11-19T03:17:20.000Z</lastmod>
-    <data>
-        <display>
-        <title>用Hexo建立Github Page——你可能会遇到的问题</title>
-        <pubTime>2014-11-07T16:34:52.000Z</pubTime>
-        
-        <tag>CS相关</tag>
-         
-         
-           
-             
-              <breadCrumb title="CS" url="http://Jayveehe.github.io/categories/CS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Jayveehe.github.io/2015/01/04/ipv6/</loc>
-    <lastmod>2015-11-19T03:14:21.000Z</lastmod>
-    <data>
-        <display>
-        <title>IPV6下利用GoAgent回避校园网收费</title>
-        <pubTime>2015-01-04T12:34:02.000Z</pubTime>
-        
-        <tag>CS相关</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://Jayveehe.github.io/2014/11/25/asong/</loc>
