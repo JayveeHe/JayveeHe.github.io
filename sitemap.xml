@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://Jayveehe.github.io/2015/01/26/nginx-flask/</loc>
+    
+    <lastmod>2016-06-02T03:09:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://Jayveehe.github.io/about/index.html</loc>
     
     <lastmod>2016-05-23T07:32:14.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://Jayveehe.github.io/2016/05/11/da_textrank/</loc>
     
     <lastmod>2016-05-23T03:37:38.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Jayveehe.github.io/2015/01/26/nginx-flask/</loc>
-    
-    <lastmod>2016-05-23T03:35:53.000Z</lastmod>
     
   </url>
   
