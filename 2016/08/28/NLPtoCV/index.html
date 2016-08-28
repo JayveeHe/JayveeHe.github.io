@@ -5,24 +5,18 @@
   
   <title>NLP选手的CV初探：人脸特征建模 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。
-
-涉及的领域CV（Computer Vision）总体上说，和NLP一样都是一个很大很大的坑：研究点很多，涉及的应用领域也很广。单就本次接触到的人脸领域而言，就包括（且不限于">
+  <meta name="description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLP选手的CV初探：人脸特征建模">
 <meta property="og:url" content="http://Jayveehe.github.io/2016/08/28/NLPtoCV/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
-<meta property="og:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。
-
-涉及的领域CV（Computer Vision）总体上说，和NLP一样都是一个很大很大的坑：研究点很多，涉及的应用领域也很广。单就本次接触到的人脸领域而言，就包括（且不限于">
+<meta property="og:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201208/31/1346398527_7290.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201208/31/1346398586_1563.jpg">
-<meta property="og:updated_time" content="2016-08-28T10:53:40.000Z">
+<meta property="og:updated_time" content="2016-08-28T10:57:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP选手的CV初探：人脸特征建模">
-<meta name="twitter:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。
-
-涉及的领域CV（Computer Vision）总体上说，和NLP一样都是一个很大很大的坑：研究点很多，涉及的应用领域也很广。单就本次接触到的人脸领域而言，就包括（且不限于">
+<meta name="twitter:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。">
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201208/31/1346398527_7290.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Jayvee&#39;s Blog" type="application/atom+xml">
@@ -238,7 +232,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。</p>
+        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。<br><a id="more"></a></p>
 <hr>
 <h2 id="涉及的领域"><a href="#涉及的领域" class="headerlink" title="涉及的领域"></a>涉及的领域</h2><p>CV（Computer Vision）总体上说，和NLP一样都是一个很大很大的坑：研究点很多，涉及的应用领域也很广。单就本次接触到的人脸领域而言，就包括（且不限于）：人脸检测（从图像中找出人脸部分）、人脸对齐（定位人脸上的关键点）、人脸匹配（匹配出同一个人在不同光照、表情、背景等条件下的照片）、人脸属性标注（年龄、性别、种族等特征信息的识别）等等。</p>
 <p>具体而言，我做的是人脸属性标注这块。这是一个很典型的分类、回归问题，只需要一些图像方面的知识，加上基本的统计学习基础即可胜任。</p>
