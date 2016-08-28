@@ -17,7 +17,7 @@
 涉及的领域CV（Computer Vision）总体上说，和NLP一样都是一个很大很大的坑：研究点很多，涉及的应用领域也很广。单就本次接触到的人脸领域而言，就包括（且不限于">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201208/31/1346398527_7290.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201208/31/1346398586_1563.jpg">
-<meta property="og:updated_time" content="2016-08-28T10:49:22.000Z">
+<meta property="og:updated_time" content="2016-08-28T10:53:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP选手的CV初探：人脸特征建模">
 <meta name="twitter:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。
@@ -264,8 +264,7 @@
 <p>Ojala提出了采用一种“等价模式”（Uniform Pattern）来对LBP算子的模式种类进行降维。Ojala等认为，在实际图像中，绝大多数LBP模式最多只包含两次从1到0或从0到1的跳变。因此，Ojala将“等价模式”定义为：当某个LBP所对应的循环二进制数从0到1或从1到0最多有两次跳变时，该LBP所对应的二进制就称为一个等价模式类。如00000000（0次跳变），00000111（只含一次从0到1的跳变），10001111（先由1跳到0，再由0跳到1，共两次跳变）都是等价模式类。除等价模式类以外的模式都归为另一类，称为混合模式类，例如10010111（共四次跳变）</p>
 </blockquote>
 <p>Uniform Pattern LBP总共只有58个值，相比于原始的256个值，减少了很多。</p>
-<p>##参考文献</p>
-<ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
 <li>《目标检测的图像特征提取之（二）LBP特征》 <a href="http://blog.csdn.net/zouxy09/article/details/7929531" target="_blank" rel="external">http://blog.csdn.net/zouxy09/article/details/7929531</a></li>
 <li>《Blessing of Dimensionality: High-dimensional Feature and Its Efficient Compression for Face Verification》  <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2013/html/Chen_Blessing_of_Dimensionality_2013_CVPR_paper.html" target="_blank" rel="external">http://www.cv-foundation.org/openaccess/content_cvpr_2013/html/Chen_Blessing_of_Dimensionality_2013_CVPR_paper.html</a></li>
 </ol>
