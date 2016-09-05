@@ -3,19 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>NLP选手的CV初探：人脸特征建模 | Jayvee&#39;s Blog</title>
+  <title>NLP选手的CV初探：图像LBP特征建模 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NLP选手的CV初探：人脸特征建模">
+<meta property="og:title" content="NLP选手的CV初探：图像LBP特征建模">
 <meta property="og:url" content="http://Jayveehe.github.io/2016/08/28/NLPtoCV/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
 <meta property="og:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201208/31/1346398527_7290.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201208/31/1346398586_1563.jpg">
-<meta property="og:updated_time" content="2016-08-28T10:57:04.000Z">
+<meta property="og:updated_time" content="2016-09-03T13:38:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NLP选手的CV初探：人脸特征建模">
+<meta name="twitter:title" content="NLP选手的CV初探：图像LBP特征建模">
 <meta name="twitter:description" content="前言：最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。">
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201208/31/1346398527_7290.jpg">
   
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      NLP选手的CV初探：人脸特征建模
+      NLP选手的CV初探：图像LBP特征建模
     </h1>
   
 
@@ -258,6 +258,8 @@
 <p>Ojala提出了采用一种“等价模式”（Uniform Pattern）来对LBP算子的模式种类进行降维。Ojala等认为，在实际图像中，绝大多数LBP模式最多只包含两次从1到0或从0到1的跳变。因此，Ojala将“等价模式”定义为：当某个LBP所对应的循环二进制数从0到1或从1到0最多有两次跳变时，该LBP所对应的二进制就称为一个等价模式类。如00000000（0次跳变），00000111（只含一次从0到1的跳变），10001111（先由1跳到0，再由0跳到1，共两次跳变）都是等价模式类。除等价模式类以外的模式都归为另一类，称为混合模式类，例如10010111（共四次跳变）</p>
 </blockquote>
 <p>Uniform Pattern LBP总共只有58个值，相比于原始的256个值，减少了很多。</p>
+<hr>
+<p>下一篇博客我们讲讲High-dimensional LBP的相关内容。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ol>
 <li>《目标检测的图像特征提取之（二）LBP特征》 <a href="http://blog.csdn.net/zouxy09/article/details/7929531" target="_blank" rel="external">http://blog.csdn.net/zouxy09/article/details/7929531</a></li>
 <li>《Blessing of Dimensionality: High-dimensional Feature and Its Efficient Compression for Face Verification》  <a href="http://www.cv-foundation.org/openaccess/content_cvpr_2013/html/Chen_Blessing_of_Dimensionality_2013_CVPR_paper.html" target="_blank" rel="external">http://www.cv-foundation.org/openaccess/content_cvpr_2013/html/Chen_Blessing_of_Dimensionality_2013_CVPR_paper.html</a></li>
@@ -309,7 +311,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="NLPtoCV" data-title="NLP选手的CV初探：人脸特征建模" data-url="http://Jayveehe.github.io/2016/08/28/NLPtoCV/"></div>
+	<div class="ds-thread" data-thread-key="NLPtoCV" data-title="NLP选手的CV初探：图像LBP特征建模" data-url="http://Jayveehe.github.io/2016/08/28/NLPtoCV/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
