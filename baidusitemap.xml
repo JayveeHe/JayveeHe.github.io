@@ -4,14 +4,56 @@
 
     
   <url>
+    <loc>http://Jayveehe.github.io/2016/09/06/Notes-of-High-Dimensional-LBP/</loc>
+    <lastmod>2016-09-06T08:30:23.000Z</lastmod>
+    <data>
+        <display>
+        <title>Notes of High-Dimensional LBP</title>
+        <pubTime>2016-09-06T08:25:00.000Z</pubTime>
+        
+        <tag>CV</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Jayveehe.github.io/2016/08/28/NLPtoCV/</loc>
-    <lastmod>2016-09-03T13:38:10.000Z</lastmod>
+    <lastmod>2016-09-06T08:30:16.000Z</lastmod>
     <data>
         <display>
         <title>NLP选手的CV初探：图像LBP特征建模</title>
         <pubTime>2016-08-28T10:44:00.000Z</pubTime>
         
         <tag>CV</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://Jayveehe.github.io/2016/05/11/da_textrank/</loc>
+    <lastmod>2016-09-06T08:30:10.000Z</lastmod>
+    <data>
+        <display>
+        <title>基于TextRank的中文摘要工具</title>
+        <pubTime>2016-05-11T09:08:00.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+        <tag>NLP</tag>
          
          
            
@@ -56,31 +98,6 @@
            
              
               <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://Jayveehe.github.io/2016/05/11/da_textrank/</loc>
-    <lastmod>2016-05-23T03:37:38.000Z</lastmod>
-    <data>
-        <display>
-        <title>基于TextRank的中文摘要工具</title>
-        <pubTime>2016-05-11T09:08:00.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-        <tag>NLP</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-          
-             
-              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
