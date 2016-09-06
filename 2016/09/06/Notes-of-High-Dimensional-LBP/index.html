@@ -13,7 +13,7 @@
 <meta property="og:description" content="前言MSRA在CVPR 2013上的一篇《Blessing of Dimensionality: High-dimensional Feature and Its Efficient Compression for Face Verification》，相信已经成为很多人入门人脸相关算法的必读论文之一。网上关于这篇论文的文章，大多只是简单地介绍了一下论文中所提方法的思想与流程，很多实现的细节被一笔">
 <meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/sparse_regression.jpeg?imageView2/2/w/600">
 <meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/hd_features_construction.jpeg?imageView2/2/w/600">
-<meta property="og:updated_time" content="2016-09-06T08:30:23.000Z">
+<meta property="og:updated_time" content="2016-09-06T12:00:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Notes of High-Dimensional LBP">
 <meta name="twitter:description" content="前言MSRA在CVPR 2013上的一篇《Blessing of Dimensionality: High-dimensional Feature and Its Efficient Compression for Face Verification》，相信已经成为很多人入门人脸相关算法的必读论文之一。网上关于这篇论文的文章，大多只是简单地介绍了一下论文中所提方法的思想与流程，很多实现的细节被一笔">
@@ -243,9 +243,13 @@
 <h3 id="1-1-作者所提出的方法主要流程"><a href="#1-1-作者所提出的方法主要流程" class="headerlink" title="1.1 作者所提出的方法主要流程"></a>1.1 作者所提出的方法主要流程</h3><p><img src="http://7qnaj2.com1.z0.glb.clouddn.com/sparse_regression.jpeg?imageView2/2/w/600" alt="main_process"></p>
 <p>从图中和注释可知，在<strong>训练阶段</strong>：该方法首先从训练集中构建高维特征$X$，然后利用无监督的降维方法PCA及有监督的降维方法（如LDA）进行特征降维，得到低维特征$Y$。接着利用原始的高维特征及降维后得到的低维特征，学习出一个映射矩阵$B$。<br>在<strong>测试阶段</strong>：用同样的方法构建高维特征，并利用映射矩阵$B$直接获取降维后的特征$Y$</p>
 <p>下面主要讲一下高维特征的构建及<strong>Rotated Sparse Regression</strong>。</p>
-<h2 id="二、构建高维特征"><a href="#二、构建高维特征" class="headerlink" title="二、构建高维特征"></a>二、构建高维特征</h2><p>一般地，利用LBP特征对一幅图像进行建模，需要将图像分割为若干个blocks，并求得每个block中LBP数值的归一化统计直方图，将每个block的归一化直方图连接成一个长向量，即可利用该向量表示图像的特征。<br>而在人脸建模领域，可以仅对人脸的关键点（人脸对齐后得到的landmarks）周边进行建模，如此可以去掉大部分冗余信息。作者提出在多尺度下对人脸关键点周边进行采样建模，以此获取高维特征。作者同时发现，选取更稠密的关键点能够获得更好的效果。<br><img src="http://7qnaj2.com1.z0.glb.clouddn.com/hd_features_construction.jpeg?imageView2/2/w/600" alt=""><br>如上图所示，在进行多尺度采样时，需要设定一个固定的<code>block_size</code>和<code>cell_size</code>（而不是改变这两者的值来达到缩放效果）。从小到大的缩放尺度能够分别获取到局部细节特征和全局（相对的）轮廓特征。<br>易知，假定选取了<code>n</code>个关键点landmarks，使用<code>block_size</code>大小的block窗口，进行<code>s</code>次缩放，且每个点的LBP值有<code>k</code>种可能（这取决于采用的LBP种类，参见另一篇博文《<a href="http://jayveehe.github.io/2016/08/28/NLPtoCV/">图像LBP特征建模</a>》），则最终每幅图片的特征维度为：<br>$$n_Feature=n<em>k</em>s*block_size^2$$<br>我在实现该方法时，选取了<code>n=25</code>，<code>k=59</code>，<code>s=3</code>，<code>block_size=4</code>，最终的特征维度是70800维。</p>
-<h2 id="三、Rotated-Sparse-Regression"><a href="#三、Rotated-Sparse-Regression" class="headerlink" title="三、Rotated Sparse Regression"></a>三、Rotated Sparse Regression</h2><p>数据证明，高维特征能够有效地提升模型效果，这也是机器学习中的一个常识（当然一味地提高维度也会造成过拟合）。但是高维度往往带来高复杂度（空间复杂度与时间复杂度都会指数级增长），给计算和存储带来很大的问题，即“维度灾难”。<br>作者提出了一个高效的稀疏映射方法对高维特征进行压缩，在时间与空间上极度优化以后，仅仅带来了很少的准确性损失，不得不再次感慨标题中的<em>Blessing of Dimensionality</em>用得十分传神。<br>Rotated Sparse Regression的主要目标是求解一个稀疏的映射矩阵$B$，其目标函数为：<br>$$\min_{B,R}\ \Arrowvert\bf{\matrix{R^T}\matrix{Y}}-\matrix{B^T}\matrix{X}\Arrowvert^2_2+\lambda\Arrowvert\matrix{B}\Arrowvert_1,\quad s.t.\ R^TR=I$$<br>其中$Y$是按列存储的目标特征矩阵（低维,<code>n_Target</code>行，<code>n_Sample</code>列），$X$是按列存储的原始特征矩阵（高维，<code>n_Source</code>行，<code>n_Sample</code>列），$B$是<code>n_Source</code>行<code>n_Target</code>列映射矩阵，$R$为<code>n_Target</code>行，<code>n_Target</code>列的旋转矩阵。<br>在进行参数求解时，可以采用固定$R$计算$B$和固定$B$计算$R$的两步迭代法进行求解。</p>
-<h3 id="3-1-计算-matrix-B"><a href="#3-1-计算-matrix-B" class="headerlink" title="3.1 计算$\matrix{B}$"></a>3.1 计算$\matrix{B}$</h3><p>可以发现，在计算映射矩阵$\matrix{B}$时，其各列是相互独立的，可以并行计算。将$\matrix{B^T}$的第$i$行提出（也即$\matrix{B}$的第$i$列），下面用$b_i$表示$\matrix{B^T}$的第$i$行。令$\widetilde{Y}=\matrix{R^TY}$，则用$y_i$表示$\widetilde{Y}$的第$i$行，$N$为样本数量<code>n_Sample</code>。因此目标函数变为类似LASSO的形式：<br>$$\min_{b_i} \frac{1}{N}||\bf{y_i}-\matrix{b_iX}||^2_2+\lambda||b_i||<em>1, where\ \lambda&gt;0$$<br>若采用SGD方法进行参数估计，则需要求解目标函数的梯度：<br>$$\frac{\partial}{\partial{b</em>{i,j}}}=\frac{2}{N}(\bf{b_i}X-\bf{y_i})X<em>j^T+\lambda sign(b</em>{i,j})$$<br>其中，$b_{i,j}$是$b_i$的第$j$个坐标上的值，$\bf{X^T_j}$是$X$矩阵的第$j$行的转置。需要注意的是，1-范数在0处无导数，此处使用了符号函数进行次梯度近似。<br>得到梯度后，即可采用梯度下降的套路进行参数更新，其中涉及的步长设置、L1稀疏度控制等，此处不做赘述（下一篇再讲讲最优化方法）。<br>并行求解各$b_i$后，重新组合成矩阵$B$。</p>
+<h2 id="二、构建高维特征"><a href="#二、构建高维特征" class="headerlink" title="二、构建高维特征"></a>二、构建高维特征</h2><p>一般地，利用LBP特征对一幅图像进行建模，需要将图像分割为若干个blocks，并求得每个block中LBP数值的归一化统计直方图，将每个block的归一化直方图连接成一个长向量，即可利用该向量表示图像的特征。<br>而在人脸建模领域，可以仅对人脸的关键点（人脸对齐后得到的landmarks）周边进行建模，如此可以去掉大部分冗余信息。作者提出在多尺度下对人脸关键点周边进行采样建模，以此获取高维特征。作者同时发现，选取更稠密的关键点能够获得更好的效果。<br><img src="http://7qnaj2.com1.z0.glb.clouddn.com/hd_features_construction.jpeg?imageView2/2/w/600" alt=""><br>如上图所示，在进行多尺度采样时，需要设定一个固定的<code>block_size</code>和<code>cell_size</code>（而不是改变这两者的值来达到缩放效果）。从小到大的缩放尺度能够分别获取到局部细节特征和全局（相对的）轮廓特征。<br>易知，假定选取了<code>n</code>个关键点landmarks，使用<code>block_size</code>大小的block窗口，进行<code>s</code>次缩放，且每个点的LBP值有<code>k</code>种可能（这取决于采用的LBP种类，参见另一篇博文《<a href="http://jayveehe.github.io/2016/08/28/NLPtoCV/">图像LBP特征建模</a>》），则最终每幅图片的特征维度为：<br><span>$$n\_Feature=n*k*s*block\_size^2$$</span><!-- Has MathJax --><br>我在实现该方法时，选取了<code>n=25</code>，<code>k=59</code>，<code>s=3</code>，<code>block_size=4</code>，最终的特征维度是70800维。</p>
+<h2 id="三、Rotated-Sparse-Regression"><a href="#三、Rotated-Sparse-Regression" class="headerlink" title="三、Rotated Sparse Regression"></a>三、Rotated Sparse Regression</h2><p>数据证明，高维特征能够有效地提升模型效果，这也是机器学习中的一个常识（当然一味地提高维度也会造成过拟合）。但是高维度往往带来高复杂度（空间复杂度与时间复杂度都会指数级增长），给计算和存储带来很大的问题，即“维度灾难”。<br>作者提出了一个高效的稀疏映射方法对高维特征进行压缩，在时间与空间上极度优化以后，仅仅带来了很少的准确性损失，不得不再次感慨标题中的<em>Blessing of Dimensionality</em>用得十分传神。<br>Rotated Sparse Regression的主要目标是求解一个稀疏的映射矩阵$B$，其目标函数为：</p>
+<p>$$\min_{B,R}\ ||\bf{\matrix{R^T}\matrix{Y}}-\matrix{B^T}\matrix{X}||^2_2+\lambda||\matrix{B}||_1,\quad s.t.\ R^TR=I$$</p>
+<p>其中$Y$是按列存储的目标特征矩阵（低维,<code>n_Target</code>行，<code>n_Sample</code>列），$X$是按列存储的原始特征矩阵（高维，<code>n_Source</code>行，<code>n_Sample</code>列），$B$是<code>n_Source</code>行<code>n_Target</code>列映射矩阵，$R$为<code>n_Target</code>行，<code>n_Target</code>列的旋转矩阵。<br>在进行参数求解时，可以采用固定$R$计算$B$和固定$B$计算$R$的两步迭代法进行求解。</p>
+<h3 id="3-1-计算-matrix-B"><a href="#3-1-计算-matrix-B" class="headerlink" title="3.1 计算$\matrix{B}$"></a>3.1 计算$\matrix{B}$</h3><p>可以发现，在计算映射矩阵$\matrix{B}$时，其各列是相互独立的，可以并行计算。将$\matrix{B^T}$的第$i$行提出（也即$\matrix{B}$的第$i$列），下面用$b_i$表示$\matrix{B^T}$的第$i$行。令$\widetilde{Y}=\matrix{R^TY}$，则用$y_i$表示$\widetilde{Y}$的第$i$行，$N$为样本数量<code>n_Sample</code>。因此目标函数变为类似LASSO的形式：  </p>
+<p>$$\min_{b_i}\ \frac{1}{N}||\bf{y_i}-\matrix{b_iX}||^2_2+\lambda||b_i||_1, where  \lambda&gt;0$$</p>
+<p>若采用SGD方法进行参数估计，则需要求解目标函数的梯度：<br><span>$$\frac{\partial{}}{\partial{b_{i,j}}}=\frac{2}{N}(\bf{b_i}X-\bf{y_i})X_j^T+\lambda sign(b_{i,j})$$</span><!-- Has MathJax --><br>其中，$b_{i,j}$是$b_i$的第$j$个坐标上的值，$\bf{X^T_j}$是$X$矩阵的第$j$行的转置。需要注意的是，1-范数在0处无导数，此处使用了符号函数进行次梯度近似。<br>得到梯度后，即可采用梯度下降的套路进行参数更新，其中涉及的步长设置、L1稀疏度控制等，此处不做赘述（下一篇再讲讲最优化方法）。<br>并行求解各$b_i$后，重新组合成矩阵$B$。</p>
 <h3 id="3-2-计算-matrix-R"><a href="#3-2-计算-matrix-R" class="headerlink" title="3.2 计算$\matrix{R}$"></a>3.2 计算$\matrix{R}$</h3><p>论文中给出了R的闭式解，设$\matrix{YX^TB}$的SVD结果是$\matrix{UDV^T}$，则：<br>$$R=UV^T$$<br>如此便完成了一次更新。</p>
 <h2 id="四、补充"><a href="#四、补充" class="headerlink" title="四、补充"></a>四、补充</h2><ol>
 <li>梯度中包含的$\frac{1}{N}$是为了求梯度均值而加，经验所致。可以用更小的学习率替代，以防止发散。</li>
@@ -414,7 +418,7 @@ MathJax.Hub.Queue(function() {
 
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true}});
 </script>
 
 <script type="text/x-mathjax-config">
@@ -426,7 +430,7 @@ MathJax.Hub.Queue(function() {
   });
 </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
