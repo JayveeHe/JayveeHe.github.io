@@ -3,21 +3,18 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>If only you have patience | Jayvee&#39;s Blog</title>
+  <title>含L1正则项的最优化问题求解：Shooting Algorithm | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I was thinking these days——what will make it possible that those who visit my website be willing to leave some message on the passage.Apperantly,it seems(and maybe it is true) that there is no other p">
+  <meta name="description" content="前言Shooting算法是W.J.Fu在1998年提出的，原始论文为《Penalized Regressions: The Bridge Versus the Lasso》，是一种针对包含L1正则项的最优化问题（如LASSO）的快速求解方法，据称效果与流行的LARS（Least Angle Regression）不相上下（或者更好）。本文主要参考《A tutorial on the LASSO a">
 <meta property="og:type" content="article">
-<meta property="og:title" content="If only you have patience">
-<meta property="og:url" content="http://Jayveehe.github.io/2013/06/30/if-only-you-have-patience/index.html">
+<meta property="og:title" content="含L1正则项的最优化问题求解：Shooting Algorithm">
+<meta property="og:url" content="http://Jayveehe.github.io/2016/09/09/Shooting-Algorithm/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
-<meta property="og:description" content="I was thinking these days——what will make it possible that those who visit my website be willing to leave some message on the passage.Apperantly,it seems(and maybe it is true) that there is no other p">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/64e1f62cjw1e66ich8m7qj20p008cgoa.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/64e1f62cjw1e66icgn7n7j20p00b4gn8.jpg">
-<meta property="og:updated_time" content="2015-01-27T07:15:52.000Z">
+<meta property="og:description" content="前言Shooting算法是W.J.Fu在1998年提出的，原始论文为《Penalized Regressions: The Bridge Versus the Lasso》，是一种针对包含L1正则项的最优化问题（如LASSO）的快速求解方法，据称效果与流行的LARS（Least Angle Regression）不相上下（或者更好）。本文主要参考《A tutorial on the LASSO a">
+<meta property="og:updated_time" content="2016-09-09T15:09:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="If only you have patience">
-<meta name="twitter:description" content="I was thinking these days——what will make it possible that those who visit my website be willing to leave some message on the passage.Apperantly,it seems(and maybe it is true) that there is no other p">
-<meta name="twitter:image" content="http://ww4.sinaimg.cn/large/64e1f62cjw1e66ich8m7qj20p008cgoa.jpg">
+<meta name="twitter:title" content="含L1正则项的最优化问题求解：Shooting Algorithm">
+<meta name="twitter:description" content="前言Shooting算法是W.J.Fu在1998年提出的，原始论文为《Penalized Regressions: The Bridge Versus the Lasso》，是一种针对包含L1正则项的最优化问题（如LASSO）的快速求解方法，据称效果与流行的LARS（Least Angle Regression）不相上下（或者更好）。本文主要参考《A tutorial on the LASSO a">
   
     <link rel="alternative" href="/atom.xml" title="Jayvee&#39;s Blog" type="application/atom+xml">
   
@@ -191,11 +188,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-if-only-you-have-patience" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-Shooting-Algorithm" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2013/06/30/if-only-you-have-patience/" class="article-date">
-  	<time datetime="2013-06-30T14:15:49.000Z" itemprop="datePublished">Jun 30 2013</time>
+      <a href="/2016/09/09/Shooting-Algorithm/" class="article-date">
+  	<time datetime="2016-09-09T14:23:00.000Z" itemprop="datePublished">Sep 9 2016</time>
 </a>
     </div>
   
@@ -208,7 +205,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      If only you have patience
+      含L1正则项的最优化问题求解：Shooting Algorithm
     </h1>
   
 
@@ -217,12 +214,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂感/">杂感</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最优化/">最优化</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/共赏/">共赏</a><a class="article-category-link" href="/categories/共赏/碎碎念/">碎碎念</a>
+	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
 	</div>
 
 
@@ -232,12 +229,37 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I was thinking these days——what will make it possible that those who visit my website be willing to leave some message on the passage.Apperantly,it seems(and maybe it is true) that there is no other person except me viewing the page.It’s not a terrible thing,because my oringinal purpose to build this website is to find a place that no one konws me.However,when it comes to expressing the feeling,you would never be excluded from seeking an audience.<br><a id="more"></a><br>I used to think that it looks very stupid for a Chinese to expressing his feelings in English,now I have got the point——by using a hard-interpret style,you will finally find an real audience.</p>
-<p>It’s June 30th now,what I have done since June 21st,when all my exams end? I have set up a J2EE develop environment in my computer and  make a helloworld,which can response a request from Android OS——this will make it possible for our Self-made Android Game Updating.</p>
-<p>As for our Game,I am so sorry for the delay of Alpha version,my project partner and I are considering using a new display form(OpenGL ES),which means our Game Engine is not ready(or perfect enough) for completing a game(although it seems OK for others).And,since I have to prepare my Entrance Examination of Postgraduate,it may be at least half a year before I can get back to work.</p>
-<p>   <strong> OK,it’s sharing time again.</strong><br>This is a Independent Game made by a couple,for almost two years I have been looking forward to it,and according to the author’blog,the beta release is around the corner.<br>You can click this link to its website:<a href="https://picroma.com/cubeworld" target="_blank" rel="external">https://picroma.com/cubeworld</a><br>For more video information,you can visit author’s Youtube <a href="http://www.youtube.com/user/WollayFX" target="_blank" rel="external">Site</a><br>Look like Minecraft,and more ARPG style!<br><a href="http://ww4.sinaimg.cn/large/64e1f62cjw1e66ich8m7qj20p008cgoa.jpg" target="_blank" rel="external"><img src="http://ww4.sinaimg.cn/large/64e1f62cjw1e66ich8m7qj20p008cgoa.jpg" alt="" title="the world"></a><br>This game will support multiplay(that’s why I strongly recommend it)<br><a href="http://ww3.sinaimg.cn/large/64e1f62cjw1e66icgn7n7j20p00b4gn8.jpg" target="_blank" rel="external"><img src="http://ww3.sinaimg.cn/large/64e1f62cjw1e66icgn7n7j20p00b4gn8.jpg" alt="" title="multiplay"></a></p>
-<p>Finally,a song as usual.<br>《Whispers in the Dark》by Yanni</p>
-<embed src="http://www.xiami.com/widget/11331723_2085916/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Shooting算法是W.J.Fu在1998年提出的，原始论文为《Penalized Regressions: The Bridge Versus the Lasso》，是一种针对包含L1正则项的最优化问题（如LASSO）的快速求解方法，据称效果与流行的LARS（Least Angle Regression）不相上下（或者更好）。本文主要参考《A tutorial on the LASSO and the ”shooting algorithm”》，介绍Shooting算法，并由此推广到Rotated Sparse Regression的问题求解上。<br><a id="more"></a></p>
+<h2 id="Shooting-for-LASSO："><a href="#Shooting-for-LASSO：" class="headerlink" title="Shooting for LASSO："></a>Shooting for LASSO：</h2><h3 id="最简单的单变量LASSO"><a href="#最简单的单变量LASSO" class="headerlink" title="最简单的单变量LASSO"></a>最简单的单变量LASSO</h3><p>$$\min_{\beta}h(\beta) = \frac{1}{2}||\bf{y}-\bf{x}\beta||^2_2+\lambda|\beta|, where\ \lambda&gt;0$$</p>
+<p>$x$和$y$均是$n\times 1$的向量，$\beta$是一个参数变量。目标函数由于L1项的存在，变得非平滑。<br>在此可以用一个变量$t$来替代：<br>$$\min_{\beta}\overline{h}(\beta) = \frac{1}{2}||\bf{y}-\bf{x}\beta||^2_2+\lambda t, where\ \lambda&gt;0，t+\beta\geq0，t-\beta\geq0$$</p>
+<p>可以证明，若$\beta^*_1$是$h(\beta)$的解，$(\beta^*,t^*)$是$\overline{h}(\beta)$的解，则$\beta^*_1=\beta^*$。（具体证明参见《A tutorial on the LASSO and the ”shooting algorithm”》pp.7）</p>
+<p>这个约束条件下的最优化求解，可以套用拉格朗日乘子：</p>
+<p>$$L(\beta,t,\lambda_1,\lambda_2)=\frac{1}{2}||\bf{y}-\bf{x}\beta||^2_2+\lambda t -\lambda_1(t-\beta)-\lambda_2(t+\beta)$$</p>
+<p>可以利用KKT条件求出解析解。</p>
+<h3 id="多变量LASSO"><a href="#多变量LASSO" class="headerlink" title="多变量LASSO"></a>多变量LASSO</h3><p>多变量LASSO的形式为：<br>$$\min_{\beta}h(\beta) = \frac{1}{2}||\bf{y}-\bf{x\beta}||^2_2+\lambda||\bf{\beta}||_1, where\ \lambda&gt;0$$<br>其中，$X = [x_1,x_2,…,x_p]$，$\beta= [ \beta_1, \beta_2,…, \beta_p]^T$， <span>$X(i) = [x_1,...,x_{i-1},x_{i+1},...,x_p]$</span><!-- Has MathJax -->， <span>$\beta^{(-i)} =[ \beta_1, . . . ,  \beta_{i-1},\beta_{i+1}, . . . ,\beta_p]^T$</span><!-- Has MathJax --></p>
+<p>设$A^{(-i)}$表示除掉第i个元素后的$A$，问题可以转化为求解如下目标函数，并采用逐个更新的方式进行参数估计（选取一个待更新变量，固定其他变量）：<br>$$\min_{\beta_i} h’(\beta_i) = \frac{1}{2}||\bf{y_i}-\bf{x_i}\beta_i||^2_2 +\lambda |\beta_i| + \lambda ||\bf{\beta^{(-i)}}||_1$$<br>其中$\bf{y_i}=\bf{y}-X^{(-i)}\beta^{(-i)}$。从上式的形式可以看出，其实是将待更新的变量提了出来。</p>
+<h2 id="Shooting-for-RSR（Rotated-Sparse-Regression"><a href="#Shooting-for-RSR（Rotated-Sparse-Regression" class="headerlink" title="Shooting for RSR（Rotated Sparse Regression)"></a>Shooting for RSR（Rotated Sparse Regression)</h2><p>在此举一个例子来说明如何将Shooting算法应用到其他包含L1约束条件的最优化问题求解中。该例子是上篇<a href="http://jayveehe.github.io/2016/09/06/Notes-of-High-Dimensional-LBP/">博文</a>中提到的Rotated Sparse Regression的矩阵学习问题。</p>
+<h3 id="原始目标函数："><a href="#原始目标函数：" class="headerlink" title="原始目标函数："></a>原始目标函数：</h3><p>$$\min_{B,R}\ ||\bf{\matrix{R^T}\matrix{Y}}-\matrix{B^T}\matrix{X}||^2_2+\lambda||\matrix{B}||_1,\quad s.t.\ R^TR=I$$</p>
+<p>在计算映射矩阵$\matrix{B}$时，其各列是相互独立的，可以并行计算。将$\matrix{B^T}$的第$i$行提出（也即$\matrix{B}$的第$i$列），下面用$b_i$表示$\matrix{B^T}$的第$i$行。令$\widetilde{Y}=\matrix{R^TY}$，则用$y_i$表示$\widetilde{Y}$的第$i$行，$N$为样本数量<code>n_Sample</code>。因此目标函数变为类似LASSO的形式：  </p>
+<p>$$\min_{b_i}\ \frac{1}{N}||\bf{y_i}-\matrix{b_iX}||^2_2+\lambda||b_i||_1, where\   \lambda&gt;0$$</p>
+<p>采用坐标下降法进行参数估计，需要对<span>$b_i$</span><!-- Has MathJax -->的每一维坐标进行估计。在对$b_{i,j}$进行估计时，可以采用“固定其他变量，仅估计$b_{i,j}$”的方式进行迭代估计。<br>此时求解函数为：</p>
+<p>$$\min_{b_{i,j}}\ \frac{1}{N}||\widetilde{\bf{y_i}}-\matrix{b_{i,j}X_j}||^2_2+\lambda||b_i^{(-j)}||_1+\lambda |b_{i,j}| , where\   \lambda&gt;0$$</p>
+<p>其中$\widetilde{\bf{y_i}}=y_i-b_i^{(-j)}X^{(-j)}$</p>
+<h3 id="RSR目标函数的Shooting求解"><a href="#RSR目标函数的Shooting求解" class="headerlink" title="RSR目标函数的Shooting求解"></a>RSR目标函数的Shooting求解</h3><p>类似单变量的LASSO问题，则可以将L1项用t替代，等价的目标函数为：<br>$$\min_{b_{i,j}}\ \frac{1}{N}||\widetilde{\bf{y_i}}-\matrix{b_{i,j}X_j}||^2_2+\lambda||b_i^{(-j)}||_1+\lambda t , where\   \lambda&gt;0, t+b_{i,j}\geq0, t-b_{i,j}\geq0$$<br>构建拉格朗日乘子：<br>$$L(b_{i,j},t,\lambda_1,\lambda_2)=\frac{1}{N}||\widetilde{\bf{y_i}}-\matrix{b_{i,j}X_j}||^2_2+\lambda||b_i^{(-j)}||_1+\lambda t -\lambda_1(t-b_{i,j})-\lambda_2(t+b_{i,j})$$</p>
+<p>结合KKT条件并求偏导：  </p>
+<ol>
+<li>$$\frac{\partial{L}}{\partial{b_{i,j}}}=\frac{2}{N}(\matrix{b_{i,j}X_j}-\bf{\widetilde{y_i}})X_j^T+\lambda_1-\lambda_2=0 \Rightarrow b_{i,j}=\frac{\frac{2}{N}\widetilde{y_i}X_j^T-(\lambda_1-\lambda_2)}{\frac{2}{N}X_jX_j^T}$$</li>
+<li>$$\frac{\partial{L}}{\partial{t}}=\lambda-\lambda_1-\lambda_2=0 \Rightarrow \lambda=\lambda_1+\lambda_2$$</li>
+</ol>
+<h4 id="分情况得出解析解："><a href="#分情况得出解析解：" class="headerlink" title="分情况得出解析解："></a>分情况得出解析解：</h4><ol>
+<li>若$\frac{2}{N}\widetilde{y_i}X_j^T-\lambda&gt;0$，在满足假设与KKT的条件下，$\lambda_2=0$，此时:$$b_{i,j}=\frac{\frac{2}{N}\widetilde{y_i}X_j^T-\lambda}{\frac{2}{N}X_jX_j^T}$$</li>
+<li>若$\frac{2}{N}\widetilde{y_i}X_j^T+\lambda&lt;0$，在满足假设与KKT的条件下，$\lambda_1=0$，此时:$$b_{i,j}=\frac{\frac{2}{N}\widetilde{y_i}X_j^T+\lambda}{\frac{2}{N}X_jX_j^T}$$</li>
+<li>其他情况下，由KKT条件可以推出:$$b_{i,j}=0$$</li>
+</ol>
+<p>至此即可逐步完成$b_i$的估计。</p>
+<h2 id="Tricks！"><a href="#Tricks！" class="headerlink" title="Tricks！"></a>Tricks！</h2><p>在实际操作中，我们需要注意减少重复计算。分析$b_{i,j}$的表达式可知，若采用的是坐标下降法（CD），则在每一个针对坐标的iteration中（变化的量是j，遍历计算所有的坐标j），$\widetilde{\bf{y_i}}=y_i-b_i^{(-j)}X^{(-j)}$都需要重新计算（即让目标函数朝梯度方向“走”一步，每更新一个j就应该重新计算一次$\widetilde{\bf{y_i}}$，这代表了$b_i$得到了更新，进入了一个新状态）该计算至关重要，可以让算法更快收敛。<br>可以发现，在计算$b_i^{(-j)}X^{(-j)}$时，变化的量只是下标为j-1的部分，其他部分与上一个iteration中的值一样。因此我们可以保存上一个iteration中的$b_i^{(-j)}X^{(-j)}$值，设为$\vec{bi_X}$，假设在本次迭代中，更新前的$b_{i,j}$为<span>$old\_b_{i,j}$</span><!-- Has MathJax -->，更新后的为<span>$new\_b_{i,j}$</span><!-- Has MathJax -->。则本次iteration后待更新的$b_i^{(-j)}X^{(-j)}$公式为：<br><span>$$b_i^{(-j)}X^{(-j)}=\vec{bi_X}-old\_b_{i,j}X_j+new\_b_{i,j}X_j=\vec{bi_X}+(new\_b_{i,j}-old\_b_{i,j})X_j$$</span><!-- Has MathJax --></p>
+<p>同理，该trick可以推广到其他具体问题中，<strong><em>此举可省去99%的计算量</em></strong></p>
+
       
     </div>
     
@@ -246,18 +268,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2013/07/29/daqingdiguo/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          大秦帝国摘抄（1）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2013/06/24/qixing/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">骑行：北京奥林匹克公园</div>
+    <a href="/2016/09/06/Notes-of-High-Dimensional-LBP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Notes of High-Dimensional LBP</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -293,7 +306,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="if-only-you-have-patience" data-title="If only you have patience" data-url="http://Jayveehe.github.io/2013/06/30/if-only-you-have-patience/"></div>
+	<div class="ds-thread" data-thread-key="Shooting-Algorithm" data-title="含L1正则项的最优化问题求解：Shooting Algorithm" data-url="http://Jayveehe.github.io/2016/09/09/Shooting-Algorithm/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

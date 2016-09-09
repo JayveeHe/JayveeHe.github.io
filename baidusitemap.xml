@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>http://Jayveehe.github.io/2016/09/09/Shooting-Algorithm/</loc>
+    <lastmod>2016-09-09T15:09:13.000Z</lastmod>
+    <data>
+        <display>
+        <title>含L1正则项的最优化问题求解：Shooting Algorithm</title>
+        <pubTime>2016-09-09T14:23:00.000Z</pubTime>
+        
+        <tag>最优化</tag>
+         
+        <tag>Math</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Jayveehe.github.io/2016/09/06/Notes-of-High-Dimensional-LBP/</loc>
-    <lastmod>2016-09-06T12:00:20.000Z</lastmod>
+    <lastmod>2016-09-08T08:13:22.000Z</lastmod>
     <data>
         <display>
         <title>Notes of High-Dimensional LBP</title>
