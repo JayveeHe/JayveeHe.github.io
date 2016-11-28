@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://Jayveehe.github.io/about/index.html</loc>
+    
+    <lastmod>2016-11-28T08:29:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://Jayveehe.github.io/about/resume.html</loc>
     
     <lastmod>2016-10-13T16:29:00.000Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://Jayveehe.github.io/2016/05/11/da_textrank/</loc>
     
     <lastmod>2016-09-06T08:30:10.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Jayveehe.github.io/about/index.html</loc>
-    
-    <lastmod>2016-06-29T04:56:27.000Z</lastmod>
     
   </url>
   
