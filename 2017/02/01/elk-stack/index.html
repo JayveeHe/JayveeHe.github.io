@@ -5,18 +5,18 @@
   
   <title>Elastic Stack 5.x版本部署概述 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：">
+  <meta name="description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elastic Stack 5.x版本部署概述">
 <meta property="og:url" content="http://Jayveehe.github.io/2017/02/01/elk-stack/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
-<meta property="og:description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：">
+<meta property="og:description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑">
 <meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png">
 <meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/Kibana%E7%95%8C%E9%9D%A2.jpeg">
-<meta property="og:updated_time" content="2017-01-31T17:09:44.000Z">
+<meta property="og:updated_time" content="2017-01-31T17:12:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elastic Stack 5.x版本部署概述">
-<meta name="twitter:description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：">
+<meta name="twitter:description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑">
 <meta name="twitter:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="Jayvee&#39;s Blog" type="application/atom+xml">
@@ -232,7 +232,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。<br>在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：<br><img src="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png" alt=""><br><a id="more"></a><br>首先在各日志产生机上部署收集器Filebeat，然后Filebeat将监控到的log文件变化数据传至Kafka集群，Logstash负责将数据从kafka中拉取下来，并进行字段解析，向Elasticsearch输出结构化后的日志，Kibana负责将Elasticsearch中的数据进行可视化。</p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。<br>在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：<br><img src="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png" alt=""><br>本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑及解决方法。<br><a id="more"></a><br>首先在各日志产生机上部署收集器Filebeat，然后Filebeat将监控到的log文件变化数据传至Kafka集群，Logstash负责将数据从kafka中拉取下来，并进行字段解析，向Elasticsearch输出结构化后的日志，Kibana负责将Elasticsearch中的数据进行可视化。</p>
 <h3 id="【重点参考】："><a href="#【重点参考】：" class="headerlink" title="【重点参考】："></a>【重点参考】：</h3><ol>
 <li>ELK中文书 <a href="http://kibana.logstash.es/content/" target="_blank" rel="external">http://kibana.logstash.es/content/</a></li>
 </ol>
