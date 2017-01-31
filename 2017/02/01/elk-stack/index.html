@@ -3,14 +3,21 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Jayvee&#39;s Blog</title>
+  <title>Elastic Stack 5.x版本部署概述 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Jayvee's Blog">
-<meta property="og:url" content="http://Jayveehe.github.io/index.html">
+  <meta name="description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：首先在各日志产生机上部署收集器Filebeat，然后Filebeat将监控到的log文件变化数据传至Ka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elastic Stack 5.x版本部署概述">
+<meta property="og:url" content="http://Jayveehe.github.io/2017/02/01/elk-stack/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
+<meta property="og:description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：首先在各日志产生机上部署收集器Filebeat，然后Filebeat将监控到的log文件变化数据传至Ka">
+<meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png">
+<meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/Kibana%E7%95%8C%E9%9D%A2.jpeg">
+<meta property="og:updated_time" content="2017-01-31T17:02:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jayvee's Blog">
+<meta name="twitter:title" content="Elastic Stack 5.x版本部署概述">
+<meta name="twitter:description" content="概述Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。在本次实践中，我们所部署的ELK分布式日志系统，其架构大致如下：首先在各日志产生机上部署收集器Filebeat，然后Filebeat将监控到的log文件变化数据传至Ka">
+<meta name="twitter:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png">
   
     <link rel="alternative" href="/atom.xml" title="Jayvee&#39;s Blog" type="application/atom+xml">
   
@@ -184,9 +191,7 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap">
-  
-    <article id="post-elk-stack" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-elk-stack" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
       <a href="/2017/02/01/elk-stack/" class="article-date">
@@ -202,12 +207,19 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/01/elk-stack/">Elastic Stack 5.x版本部署概述</a>
+    <h1 class="article-title" itemprop="name">
+      Elastic Stack 5.x版本部署概述
     </h1>
   
 
       </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
       
     
     <div class="article-entry" itemprop="articleBody">
@@ -315,348 +327,69 @@
       
     </div>
     
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/09/09/Shooting-Algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">含L1正则项的最优化问题求解：Shooting Algorithm</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+     
+    <div class="article-nav-link-wrap" align="right">
+          <span id="busuanzi_container_page_pv" style='display:none'>
+              本篇阅读量<span id="busuanzi_value_page_pv"></span>次
+          </span>
+    </div>
+
+</nav>
+
   
 </article>
 
 
-
-
-
-
-
-  
-    <article id="post-Shooting-Algorithm" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/09/Shooting-Algorithm/" class="article-date">
-  	<time datetime="2016-09-09T14:23:00.000Z" itemprop="datePublished">Sep 9 2016</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/09/Shooting-Algorithm/">含L1正则项的最优化问题求解：Shooting Algorithm</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Shooting算法是W.J.Fu在1998年提出的，原始论文为《Penalized Regressions: The Bridge Versus the Lasso》，是一种针对包含L1正则项的最优化问题（如LASSO）的快速求解方法，据称效果与流行的LARS（Least Angle Regression）不相上下（或者更好）。本文主要参考《A tutorial on the LASSO and the ”shooting algorithm”》，介绍Shooting算法，并由此推广到Rotated Sparse Regression的问题求解上。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最优化/">最优化</a></li></ul>
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/09/09/Shooting-Algorithm/#more">继续阅读 >></a>
-        </p>
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
-  </div>
-  
-</article>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
-
-
-
-
-  
-    <article id="post-Notes-of-High-Dimensional-LBP" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/09/06/Notes-of-High-Dimensional-LBP/" class="article-date">
-  	<time datetime="2016-09-06T08:25:00.000Z" itemprop="datePublished">Sep 6 2016</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/06/Notes-of-High-Dimensional-LBP/">Notes of High-Dimensional LBP</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>MSRA在CVPR 2013上的一篇《<a href="http://www.cv-foundation.org/openaccess/content_cvpr_2013/html/Chen_Blessing_of_Dimensionality_2013_CVPR_paper.html"><em>Blessing of Dimensionality: High-dimensional Feature and Its Efficient Compression for Face Verification</em></a>》，相信已经成为很多人入门人脸相关算法的必读论文之一。网上关于这篇论文的文章，大多只是简单地介绍了一下论文中所提方法的思想与流程，很多实现的细节被一笔带过（或者相关博主也仅仅是阅读了论文而没做实现）。下面我将总结一下个人在实现该论文方法的过程中所遇到的问题与相关的思考。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CV/">CV</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/09/06/Notes-of-High-Dimensional-LBP/#more">继续阅读 >></a>
-        </p>
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
-  </div>
-  
-</article>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="elk-stack" data-title="Elastic Stack 5.x版本部署概述" data-url="http://Jayveehe.github.io/2017/02/01/elk-stack/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"jayveehexo"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
 
-
-
-
-  
-    <article id="post-NLPtoCV" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/28/NLPtoCV/" class="article-date">
-  	<time datetime="2016-08-28T10:44:00.000Z" itemprop="datePublished">Aug 28 2016</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/28/NLPtoCV/">NLP选手的CV初探：图像LBP特征建模</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CV/">CV</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/28/NLPtoCV/#more">继续阅读 >></a>
-        </p>
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-da_textrank" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/05/11/da_textrank/" class="article-date">
-  	<time datetime="2016-05-11T09:08:00.000Z" itemprop="datePublished">May 11 2016</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/11/da_textrank/">基于TextRank的中文摘要工具</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近需要做一些文本摘要的东西，选取了TextRank（论文参见<a href="http://web.eecs.umich.edu/%7Emihalcea/papers/mihalcea.emnlp04.pdf">《TextRank: Bringing Order into Texts》</a>）作为对比方案，该方案可以很方便的使用Python相关库进行实现。</p>
-<p>下面介绍如何利用Python实现一个简单的文本摘要工具。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/05/11/da_textrank/#more">继续阅读 >></a>
-        </p>
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-shooooty-md" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/12/26/shooooty-md/" class="article-date">
-  	<time datetime="2015-12-25T16:44:00.000Z" itemprop="datePublished">Dec 26 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/12/26/shooooty-md/">Shooooty——在你想到的任何网站玩弹幕</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前言：近期开的一个坑就是做了一个可以在任何网站上刷弹幕的Chrome插件（确切的说应该是扩展程序），涉及到的技术有Python+JS+HTML以及Chrome扩展程序的相关规则。下面把具体的介绍和使用说明放出来，欢迎大家使用。</p>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/新奇脑洞/">新奇脑洞</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/技术相关/">技术相关</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2015/12/26/shooooty-md/#more">继续阅读 >></a>
-        </p>
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -711,8 +444,8 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
