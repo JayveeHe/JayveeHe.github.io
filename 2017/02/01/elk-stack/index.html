@@ -3,19 +3,19 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Elastic Stack 5.x版本部署概述 | Jayvee&#39;s Blog</title>
+  <title>Elastic Stack(ELK) 5.x版本部署概述 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前言Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑及解决方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Elastic Stack 5.x版本部署概述">
+<meta property="og:title" content="Elastic Stack(ELK) 5.x版本部署概述">
 <meta property="og:url" content="http://Jayveehe.github.io/2017/02/01/elk-stack/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
 <meta property="og:description" content="前言Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑及解决方法。">
 <meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png">
 <meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/Kibana%E7%95%8C%E9%9D%A2.jpeg">
-<meta property="og:updated_time" content="2017-02-01T01:35:57.000Z">
+<meta property="og:updated_time" content="2017-02-14T03:48:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Elastic Stack 5.x版本部署概述">
+<meta name="twitter:title" content="Elastic Stack(ELK) 5.x版本部署概述">
 <meta name="twitter:description" content="前言Elastic Stack是ELK日志系统的官方称呼，而ELK则是盛名在外的一款开源分布式日志系统，一般说来包括了Elasticsearch、Logstash和Kibana，涵盖了后端日志采集、日志搜索服务和前端数据展示等功能。本文将会对Elastic Stack的安装部署流程进行一系列简单的介绍，并记录下了一些部署过程中遇到的坑及解决方法。">
 <meta name="twitter:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/ELK%E6%9E%B6%E6%9E%84.png">
   
@@ -117,7 +117,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/ACG/" style="font-size: 15px;">ACG</a> <a href="/tags/CS相关/" style="font-size: 20px;">CS相关</a> <a href="/tags/CV/" style="font-size: 15px;">CV</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/新奇脑洞/" style="font-size: 10px;">新奇脑洞</a> <a href="/tags/日志分析/" style="font-size: 10px;">日志分析</a> <a href="/tags/最优化/" style="font-size: 10px;">最优化</a> <a href="/tags/杂感/" style="font-size: 15px;">杂感</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a>
+						<a href="/tags/ACG/" style="font-size: 15px;">ACG</a> <a href="/tags/CS相关/" style="font-size: 20px;">CS相关</a> <a href="/tags/CV/" style="font-size: 15px;">CV</a> <a href="/tags/ELK-stack/" style="font-size: 10px;">ELK stack</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Math/" style="font-size: 10px;">Math</a> <a href="/tags/NLP/" style="font-size: 10px;">NLP</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/新奇脑洞/" style="font-size: 10px;">新奇脑洞</a> <a href="/tags/日志分析/" style="font-size: 10px;">日志分析</a> <a href="/tags/最优化/" style="font-size: 10px;">最优化</a> <a href="/tags/杂感/" style="font-size: 15px;">杂感</a> <a href="/tags/生活/" style="font-size: 15px;">生活</a> <a href="/tags/阅读/" style="font-size: 10px;">阅读</a>
 					</div>
 				</section>
 				
@@ -208,7 +208,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Elastic Stack 5.x版本部署概述
+      Elastic Stack(ELK) 5.x版本部署概述
     </h1>
   
 
@@ -217,7 +217,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS相关/">CS相关</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志分析/">日志分析</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS相关/">CS相关</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ELK-stack/">ELK stack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日志分析/">日志分析</a></li></ul>
 	</div>
 
         
@@ -378,7 +378,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="elk-stack" data-title="Elastic Stack 5.x版本部署概述" data-url="http://Jayveehe.github.io/2017/02/01/elk-stack/"></div>
+	<div class="ds-thread" data-thread-key="elk-stack" data-title="Elastic Stack(ELK) 5.x版本部署概述" data-url="http://Jayveehe.github.io/2017/02/01/elk-stack/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
