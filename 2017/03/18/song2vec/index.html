@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://Jayveehe.github.io/2017/03/18/song2vec/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
 <meta property="og:description" content="前言：2016年12月的一天，我翻着网易云音乐的“我喜欢的歌曲”，看到里面500+首各类歌曲，心想着要是网易出个自动整理的功能就好了，于是萌发了给歌单做聚类的想法，就此又开了一个云音乐相关的坑。这一次，我们来试试歌曲风格。">
-<meta property="og:updated_time" content="2017-03-19T18:22:09.000Z">
+<meta property="og:updated_time" content="2017-03-20T03:18:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MusicTaster——一种Song2Vec和Artist2Vec的实践">
 <meta name="twitter:description" content="前言：2016年12月的一天，我翻着网易云音乐的“我喜欢的歌曲”，看到里面500+首各类歌曲，心想着要是网易出个自动整理的功能就好了，于是萌发了给歌单做聚类的想法，就此又开了一个云音乐相关的坑。这一次，我们来试试歌曲风格。">
@@ -230,13 +230,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>2016年12月的一天，我翻着网易云音乐的“我喜欢的歌曲”，看到里面500+首各类歌曲，心想着要是网易出个自动整理的功能就好了，于是萌发了给歌单做聚类的想法，就此又开了一个云音乐相关的坑。<br><strong>这一次，我们来试试歌曲风格。</strong><br><a id="more"></a></p>
-<h3 id="先上成品Demo"><a href="#先上成品Demo" class="headerlink" title="先上成品Demo"></a>先上成品Demo</h3><p><a href="http://www.jayveehe.com/musictaster" target="_blank" rel="external">http://www.jayveehe.com/musictaster</a></p>
+<h3 id="先上成品Demo"><a href="#先上成品Demo" class="headerlink" title="先上成品Demo"></a>先上成品Demo</h3><p><a href="http://www.jayveehe.com/musictaster" target="_blank" rel="external">http://www.jayveehe.com/musictaster</a><br>备用地址：<a href="http://jayveehe.com/musictaster" target="_blank" rel="external">http://jayveehe.com/musictaster</a></p>
 <p>包含的功能：  </p>
 <ul>
 <li>对指定歌单进行聚类，并可视化。</li>
 <li>针对若干个歌曲，找出最相似的其他歌曲。</li>
 </ul>
-<p><strong><em>【由于备案问题，域名现在需要跳转至国外服务器，所以可能会有些卡，发起请求后敬请等待响应】</em></strong><br>可惜，网易云音乐未提供开放的创建歌单API，因此无法做到自动整理歌曲，权当娱乐吧。<br><strong>限于服务器机能，当前的模型只存储了22W+的歌曲向量，基本涵盖大部分歌曲，部分冷门歌曲暂时无法计算相似度。</strong></p>
+<p><strong><em>【由于备案问题，域名现在可能需要跳转至国外服务器，所以会有些卡，发起请求后敬请等待响应】</em></strong><br>可惜，网易云音乐未提供开放的创建歌单API，因此无法做到自动整理歌曲，权当娱乐吧。<br><strong>限于服务器机能，当前的模型只存储了22W+的歌曲向量，基本涵盖大部分歌曲，部分冷门歌曲暂时无法计算相似度。</strong></p>
 <h3 id="【目前的使用场景】"><a href="#【目前的使用场景】" class="headerlink" title="【目前的使用场景】"></a>【目前的使用场景】</h3><h4 id="【1】想看看自己或者他人的歌单大致包含哪几类歌曲？"><a href="#【1】想看看自己或者他人的歌单大致包含哪几类歌曲？" class="headerlink" title="【1】想看看自己或者他人的歌单大致包含哪几类歌曲？"></a>【1】想看看自己或者他人的歌单大致包含哪几类歌曲？</h4><ol>
 <li>打开感兴趣的歌单详情页，如：<a href="http://music.163.com/#/playlist?id=3659853" target="_blank" rel="external">http://music.163.com/#/playlist?id=3659853</a></li>
 <li>复制该网址并粘贴到输入框内，确认。</li>
