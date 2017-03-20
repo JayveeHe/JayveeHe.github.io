@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://Jayveehe.github.io/2017/03/18/song2vec/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
 <meta property="og:description" content="前言：2016年12月的一天，我翻着网易云音乐的“我喜欢的歌曲”，看到里面500+首各类歌曲，心想着要是网易出个自动整理的功能就好了，于是萌发了给歌单做聚类的想法，就此又开了一个云音乐相关的坑。这一次，我们来试试歌曲风格。">
-<meta property="og:updated_time" content="2017-03-20T03:18:19.000Z">
+<meta property="og:updated_time" content="2017-03-20T05:03:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MusicTaster——一种Song2Vec和Artist2Vec的实践">
 <meta name="twitter:description" content="前言：2016年12月的一天，我翻着网易云音乐的“我喜欢的歌曲”，看到里面500+首各类歌曲，心想着要是网易出个自动整理的功能就好了，于是萌发了给歌单做聚类的想法，就此又开了一个云音乐相关的坑。这一次，我们来试试歌曲风格。">
@@ -31,7 +31,7 @@
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
 			
-			<img lazy-src="/img/avatar.jpg" class="js-avatar">
+			<img lazy-src="/jayvee_avatar.jpg" class="js-avatar">
 			
 		</a>
 
@@ -148,7 +148,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img lazy-src="/img/avatar.jpg" class="js-avatar">
+				<img lazy-src="/jayvee_avatar.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author">Jayvee He</h1>
@@ -265,12 +265,12 @@
 <h2 id="三、补充说明"><a href="#三、补充说明" class="headerlink" title="三、补充说明"></a>三、补充说明</h2><h3 id="关于Song2Vec的语义加减性"><a href="#关于Song2Vec的语义加减性" class="headerlink" title="关于Song2Vec的语义加减性"></a>关于Song2Vec的语义加减性</h3><p>本来一开始采用Word2Vec模型时，是想利用其有趣的语义加减性做相应的歌曲推荐的。如Word2Vec原始论文给出的例子：<code>king - man + woman = queen</code>一样，我希望能够做出<code>晴天 - 周杰伦 + 林俊杰 = 江南</code>的效果。<br>但事实是，在训练歌曲向量时所作的类比过于粗暴，没有一个很好的方式将歌手与歌曲同时放到一个模型中训练（我想如果要做的话，就要改动相应的模型损失函数了），当时分别采用了两种方案：</p>
 <ol>
 <li>在训练词向量时，每一首歌名后面都跟上相应的歌手名。这样的结果是歌手与相应歌曲的距离的确很近，但是歌手和歌曲却拥有一样的权重，在做向量加减法时会有一些不想要的损失。</li>
-<li>分别训练两个模型（即歌曲向量与歌手向量），在做向量加减法时分别从两个模型中选取向量，并给不同类别的向量赋予不同的权重。这样有一个很大的问题是，两个模型在向量分布上会完全不同，即各向量的相对距离可能差别不大，但方向性却大不相同（如周杰伦与林俊杰的向量距离可能约等于晴天与江南的距离，但是二者在向量的绝对角度上会有很大差别，因为是两个独立的训练过程了）。</li>
+<li>分别训练两个模型（即歌曲向量与歌手向量），在做向量加减法时分别从两个模型中选取向量，并给不同类别的向量赋予不同的权重。这样有一个很大的问题，两个模型在向量分布上会完全不同，即各向量的相对距离可能差别不大，但方向性却大不相同（如周杰伦与林俊杰的向量距离可能约等于晴天与江南的距离，但是二者在向量的绝对角度上会有很大差别，因为是两个独立的训练过程了）。</li>
 </ol>
 <p>基于以上两个不是很好表达出来的原因，目前API所提供的歌曲、歌手同时进行的语义加减会存在一定的问题，效果仅供娱乐。但是在单类别的加减上（如纯歌手的加减或纯歌曲的加减）还是可以一看的。</p>
 <h3 id="关于本次的风格界定"><a href="#关于本次的风格界定" class="headerlink" title="关于本次的风格界定"></a>关于本次的风格界定</h3><p>本次的歌曲风格是基于歌单训练的，因此在此的“风格相似”很大程度上体现了歌曲之间在使用场景上的相似性。一个典型的例子是歌曲“爱情转移”，与它相似的歌曲前几名为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">痴心绝对	0.8222556114196777</div><div class="line">画心	0.806826114654541</div><div class="line">美丽的神话	0.8050081133842468</div><div class="line">《夜色钢琴曲》喜欢你	0.7916715741157532</div><div class="line">因为爱情	0.7888501286506653</div><div class="line">小薇 (古筝/张璐 吉他/强子)	0.7810385227203369</div><div class="line">隐形的翅膀	0.7760688662528992</div></pre></td></tr></table></figure>
-<p>这个结果可能在某种程度上与预期的“陈奕迅的歌曲”有些出入，但是它却体现了部分“影视主题曲”歌单的风格。因此，本Demo给出的相似性结果很大程度上是体现了歌曲之间的收听场景相似度。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">痴心绝对    0.8222556114196777</div><div class="line">画心  0.806826114654541</div><div class="line">美丽的神话	0.8050081133842468</div><div class="line">《夜色钢琴曲》喜欢你	0.7916715741157532</div><div class="line">因为爱情	0.7888501286506653</div><div class="line">小薇 (古筝/张璐 吉他/强子)	0.7810385227203369</div><div class="line">隐形的翅膀	0.7760688662528992</div></pre></td></tr></table></figure>
+<p>这个结果可能在某种程度上与预期的“<em>陈奕迅的歌曲</em>”有些出入，但是它却体现了部分“<em>影视主题曲</em>”歌单的风格。因此，本Demo给出的相似性结果很大程度上是体现了歌曲之间的收听场景相似度。</p>
 
       
     </div>
