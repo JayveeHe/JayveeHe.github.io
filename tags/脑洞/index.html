@@ -3,11 +3,11 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Tag: CV | Jayvee&#39;s Blog</title>
+  <title>Tag: 脑洞 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Jayvee's Blog">
-<meta property="og:url" content="http://Jayveehe.github.io/tags/CV/index.html">
+<meta property="og:url" content="http://Jayveehe.github.io/tags/脑洞/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jayvee's Blog">
@@ -186,11 +186,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Notes-of-High-Dimensional-LBP" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-song2vec" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/09/06/Notes-of-High-Dimensional-LBP/" class="article-date">
-  	<time datetime="2016-09-06T08:25:00.000Z" itemprop="datePublished">Sep 6 2016</time>
+      <a href="/2017/03/18/song2vec/" class="article-date">
+  	<time datetime="2017-03-18T06:44:49.000Z" itemprop="datePublished">Mar 18 2017</time>
 </a>
     </div>
   
@@ -203,7 +203,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/06/Notes-of-High-Dimensional-LBP/">Notes of High-Dimensional LBP</a>
+      <a class="article-title" href="/2017/03/18/song2vec/">MusicTaster——一种Song2Vec和Artist2Vec的实践</a>
     </h1>
   
 
@@ -212,7 +212,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>MSRA在CVPR 2013上的一篇《<a href="http://www.cv-foundation.org/openaccess/content_cvpr_2013/html/Chen_Blessing_of_Dimensionality_2013_CVPR_paper.html"><em>Blessing of Dimensionality: High-dimensional Feature and Its Efficient Compression for Face Verification</em></a>》，相信已经成为很多人入门人脸相关算法的必读论文之一。网上关于这篇论文的文章，大多只是简单地介绍了一下论文中所提方法的思想与流程，很多实现的细节被一笔带过（或者相关博主也仅仅是阅读了论文而没做实现）。下面我将总结一下个人在实现该论文方法的过程中所遇到的问题与相关的思考。</p>
+        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>2016年12月的一天，我翻着网易云音乐的“我喜欢的歌曲”，看到里面500+首各类歌曲，心想着要是网易出个自动整理的功能就好了，于是萌发了给歌单做聚类的想法，就此又开了一个云音乐相关的坑。<br><strong>这一次，我们来试试歌曲风格。</strong><br>
       
     </div>
     
@@ -220,7 +220,7 @@
       
       
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CV/">CV</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS相关/">CS相关</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/脑洞/">脑洞</a></li></ul>
 	</div>
 
       
@@ -231,70 +231,7 @@
 
       
         <p class="article-more-link">
-          <a  href="/2016/09/06/Notes-of-High-Dimensional-LBP/#more">继续阅读 >></a>
-        </p>
-      
-      <div class="clearfix">
-      </div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-  
-    <article id="post-NLPtoCV" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/08/28/NLPtoCV/" class="article-date">
-  	<time datetime="2016-08-28T10:44:00.000Z" itemprop="datePublished">Aug 28 2016</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/28/NLPtoCV/">NLP选手的CV初探：图像LBP特征建模</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h4><p>最近因为实习的关系，半只脚走进了CV的门里，剩下半只还在自己折腾。作为在研究生阶段搞了快2年NLP的渣渣，机器学习的一些基本理论还是懂一些的，所以大部分还是从ML通用的方面开始入手。下面总结一下最近接触和学习到的东西。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CV/">CV</a></li></ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a  href="/2016/08/28/NLPtoCV/#more">继续阅读 >></a>
+          <a  href="/2017/03/18/song2vec/#more">继续阅读 >></a>
         </p>
       
       <div class="clearfix">

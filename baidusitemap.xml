@@ -5,25 +5,24 @@
     
   <url>
     <loc>http://Jayveehe.github.io/2017/03/18/song2vec/</loc>
-    <lastmod>2017-03-20T05:48:25.000Z</lastmod>
+    <lastmod>2017-03-20T16:01:10.000Z</lastmod>
     <data>
         <display>
         <title>MusicTaster——一种Song2Vec和Artist2Vec的实践</title>
         <pubTime>2017-03-18T06:44:49.000Z</pubTime>
         
-        <tag>CS相关</tag>
-         
         <tag>NLP</tag>
          
+        <tag>CS相关</tag>
+         
         <tag>前端</tag>
+         
+        <tag>脑洞</tag>
          
          
            
              
-              <breadCrumb title="技术相关" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/"/>
-          
-             
-              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+              <breadCrumb title="机器学习" url="http://Jayveehe.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
