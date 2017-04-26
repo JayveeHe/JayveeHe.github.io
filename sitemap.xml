@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://Jayveehe.github.io/about/resume.html</loc>
+    
+    <lastmod>2017-04-26T04:33:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://Jayveehe.github.io/2017/03/18/song2vec/</loc>
     
     <lastmod>2017-04-08T08:40:58.000Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://Jayveehe.github.io/2017/02/01/elk-stack/</loc>
     
     <lastmod>2017-02-14T03:48:15.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://Jayveehe.github.io/about/resume.html</loc>
-    
-    <lastmod>2017-01-14T05:46:18.000Z</lastmod>
     
   </url>
   
