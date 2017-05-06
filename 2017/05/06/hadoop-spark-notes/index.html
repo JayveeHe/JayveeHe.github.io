@@ -3,18 +3,20 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>分享：《寻找中国本土动画源动力》——新京报出品 | Jayvee&#39;s Blog</title>
+  <title>Hadoop Streaming和Spark的一些坑 | Jayvee&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。希望国产动画越来越好，最近魁拔2要出了，看1的时候感觉缺了很大一块故事没有说完，小期待一下2。">
+  <meta name="description" content="前言：在工作中遇到了一些Hadoop Streaming和Spark in Python相关的坑，记录于此，以供参考。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分享：《寻找中国本土动画源动力》——新京报出品">
-<meta property="og:url" content="http://Jayveehe.github.io/2013/06/05/xinjinbao/index.html">
+<meta property="og:title" content="Hadoop Streaming和Spark的一些坑">
+<meta property="og:url" content="http://Jayveehe.github.io/2017/05/06/hadoop-spark-notes/index.html">
 <meta property="og:site_name" content="Jayvee's Blog">
-<meta property="og:description" content="今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。希望国产动画越来越好，最近魁拔2要出了，看1的时候感觉缺了很大一块故事没有说完，小期待一下2。">
-<meta property="og:updated_time" content="2015-01-27T07:16:16.000Z">
+<meta property="og:description" content="前言：在工作中遇到了一些Hadoop Streaming和Spark in Python相关的坑，记录于此，以供参考。">
+<meta property="og:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84.png?imageView2/2/w/150/h/150">
+<meta property="og:updated_time" content="2017-05-06T11:23:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分享：《寻找中国本土动画源动力》——新京报出品">
-<meta name="twitter:description" content="今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。希望国产动画越来越好，最近魁拔2要出了，看1的时候感觉缺了很大一块故事没有说完，小期待一下2。">
+<meta name="twitter:title" content="Hadoop Streaming和Spark的一些坑">
+<meta name="twitter:description" content="前言：在工作中遇到了一些Hadoop Streaming和Spark in Python相关的坑，记录于此，以供参考。">
+<meta name="twitter:image" content="http://7qnaj2.com1.z0.glb.clouddn.com/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84.png?imageView2/2/w/150/h/150">
   
     <link rel="alternative" href="/atom.xml" title="Jayvee&#39;s Blog" type="application/atom+xml">
   
@@ -188,11 +190,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-xinjinbao" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-hadoop-spark-notes" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2013/06/05/xinjinbao/" class="article-date">
-  	<time datetime="2013-06-05T15:46:27.000Z" itemprop="datePublished">Jun 5 2013</time>
+      <a href="/2017/05/06/hadoop-spark-notes/" class="article-date">
+  	<time datetime="2017-05-06T11:16:14.000Z" itemprop="datePublished">May 6 2017</time>
 </a>
     </div>
   
@@ -205,7 +207,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      分享：《寻找中国本土动画源动力》——新京报出品
+      Hadoop Streaming和Spark的一些坑
     </h1>
   
 
@@ -214,12 +216,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACG/">ACG</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CS相关/">CS相关</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/大数据/">大数据</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/共赏/">共赏</a>
+	<a class="article-category-link" href="/categories/技术相关/">技术相关</a>
 	</div>
 
 
@@ -229,18 +231,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。"><a href="#今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。" class="headerlink" title="今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。"></a>今天在B站看到的一个系列视频，觉得戳中泪点，特此分享出来。</h2><p>希望国产动画越来越好，最近魁拔2要出了，看1的时候感觉缺了很大一块故事没有说完，小期待一下2。<br><a id="more"></a><br>就这样，各位看官慢看。</p>
-<p>一、葫芦兄弟</p>
-<object width="544" height="452" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="quality" value="high"><param name="allowfullscreen" value="true"><param name="src" value="http://static.hdslb.com/miniloader.swf"><param name="flashvars" value="aid=589182&amp;page=1"><param name="pluginspage" value="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"><embed width="544" height="452" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" quality="high" allowfullscreen="true" flashvars="aid=589182&amp;page=1" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></object>
+        <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>在工作中遇到了一些Hadoop Streaming和Spark in Python相关的坑，记录于此，以供参考。<br><a id="more"></a></p>
+<h2 id="一、Hadoop-Streaming相关"><a href="#一、Hadoop-Streaming相关" class="headerlink" title="一、Hadoop Streaming相关"></a>一、Hadoop Streaming相关</h2><p>首先，如有任何疑请问优先查询<a href="http://hadoop.apache.org/docs/r2.8.0/hadoop-streaming/HadoopStreaming.html#Streaming_Command_Options" target="_blank" rel="external">官方文档</a></p>
+<h3 id="1-Streaming样例"><a href="#1-Streaming样例" class="headerlink" title="1. Streaming样例"></a>1. Streaming样例</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">hadoop fs -rmr hejiawei03/hadoop_usertrace_result;</div><div class="line">hadoop jar /usr/local/hadoop/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar \</div><div class="line">-archives libs.tgz#pack \</div><div class="line">-D mapred.map.tasks=5 \</div><div class="line">-D mapred.reduce.tasks=5 \</div><div class="line">-D mapred.job.name=&apos;process usertrace for test&apos; \</div><div class="line">-file mapper.py -mapper mapper.py \</div><div class="line">-file reducer.py -reducer reducer.py \</div><div class="line">-file libs.zip \</div><div class="line">-input hejiawei03/usertrace \</div><div class="line">-output hejiawei03/hadoop_usertrace_result;</div></pre></td></tr></table></figure>
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a><strong>说明</strong>：</h4><ol>
+<li>其中<code>-file</code>参数是将指定文件分发至集群各台服务器的相应临时工作路径上，在更新的版本中推荐使用<code>-files</code>参数，后面跟上用逗号分隔的多个文件名（或路径）</li>
+<li><code>-archive</code>参数用于指定相应的压缩文件，它们会被分发并解压至各slave服务器的临时工作目录下。</li>
+</ol>
+<h3 id="2-关于-archives解压后在各节点服务器上的位置"><a href="#2-关于-archives解压后在各节点服务器上的位置" class="headerlink" title="2. 关于-archives解压后在各节点服务器上的位置"></a>2. 关于<code>-archives</code>解压后在各节点服务器上的位置</h3><p>与<code>-file</code>参数类似，<code>-archives</code>参数后的文件会被自动解压，并且在默认情况下会通过一个命名为&lt;文件名&gt;的软链接symlink指向解压后的文件夹。例如：<code>-archives libs.tgz</code>会将解压后的文件夹用链接<code>#libs.tgz</code>来表示。</p>
+<p>假设libs.tgz解压后的文件夹结构如下：</p>
+<p><img src="http://7qnaj2.com1.z0.glb.clouddn.com/%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84.png?imageView2/2/w/150/h/150" alt="文件夹结构"></p>
+<p>则其中<code>six.py</code>的相对路径可以用<code>libs.tgz/libs/six.py</code>来表示，以此类推。搞清楚这个路径十分重要。</p>
+<h2 id="二、Spark相关"><a href="#二、Spark相关" class="headerlink" title="二、Spark相关"></a>二、Spark相关</h2><p>使用spark-submit命令进行程序部署，该命令下同样有<code>--files</code>和<code>--archives</code>等参数，其用法和Hadoop Streaming的类似，不再赘述。</p>
+<p>同样地，遇到任何问题首先看<a href="http://spark.apache.org" target="_blank" rel="external">官网</a></p>
+<h3 id="1-使用pyspark进行spark操作"><a href="#1-使用pyspark进行spark操作" class="headerlink" title="1. 使用pyspark进行spark操作"></a>1. 使用pyspark进行spark操作</h3><p>简单的例子可见官方repo：<a href="https://github.com/apache/spark/tree/master/examples/src/main/python" target="_blank" rel="external">https://github.com/apache/spark/tree/master/examples/src/main/python</a></p>
+<p>这里有一个非常详细的<a href="http://colobu.com/2014/12/08/spark-programming-guide/" target="_blank" rel="external">博客</a>，翻译自官方的<a href="https://spark.apache.org/docs/latest/programming-guide.html" target="_blank" rel="external">Spark Programming Guide</a>，强烈推荐！<br>Spark中有很多算子，这是区别于Hadoop的一大特点，此外，编程及理解算子的关键是理解RDD中的键值对结构。</p>
+<h3 id="2-在使用各算子时，一定要确认传入的是-中的v还是整个"><a href="#2-在使用各算子时，一定要确认传入的是-中的v还是整个" class="headerlink" title="2.在使用各算子时，一定要确认传入的是\中的v还是整个\"></a>2.在使用各算子时，一定要确认传入的是\<k,v\>中的v还是整个\<k,v\></k,v\></k,v\></h3><h2 id="三、使用Python进行程序部署遇到的坑"><a href="#三、使用Python进行程序部署遇到的坑" class="headerlink" title="三、使用Python进行程序部署遇到的坑"></a>三、使用Python进行程序部署遇到的坑</h2><p>在使用python编写hadoop streaming job以及spark程序时，常常遇到集群机器上没有需要的第三方库，因此需要依靠<code>-archives</code>以及<code>-file</code>参数将第三方包分发至各节点机器。</p>
+<p>在python脚本内，可以使用<strong>路径添加</strong>或者<strong><a href="https://docs.python.org/2/library/zipimport.html" target="_blank" rel="external">zipimport</a></strong>的方式进行包导入。</p>
+<h3 id="1-路径添加"><a href="#1-路径添加" class="headerlink" title="1. 路径添加"></a>1. 路径添加</h3><p>假设第三方库arrow的相关文件在当前目录下的<code>./libs/arrow</code>中，则可以通过下列方式进行import：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">PARENT_PATH = os.path.dirname(os.path.abspath(__file__))</div><div class="line"><span class="keyword">print</span> PARENT_PATH</div><div class="line">sys.path.append(PARENT_PATH)</div><div class="line">sys.path.append(<span class="string">'%s/libs'</span> % PARENT_PATH)</div><div class="line"></div><div class="line"><span class="keyword">import</span> arrow</div></pre></td></tr></table></figure>
+<h3 id="2-zipimport"><a href="#2-zipimport" class="headerlink" title="2. zipimport"></a>2. zipimport</h3><p>将第一节第2小节处的文件夹打包为<code>pkgs.zip</code>，则可以用如下方式进行import：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">PARENT_PATH = os.path.dirname(os.path.abspath(__file__))</div><div class="line"><span class="keyword">print</span> PARENT_PATH</div><div class="line">sys.path.append(<span class="string">'pkgs.zip/libs'</span>)</div><div class="line"></div><div class="line"><span class="keyword">import</span> arrow</div></pre></td></tr></table></figure>
+<h2 id="四、To-Be-Continued…"><a href="#四、To-Be-Continued…" class="headerlink" title="四、To Be Continued…"></a>四、To Be Continued…</h2><p>后面遇到其他问题再更新吧。</p>
 
-<p>二、水墨动画</p>
-<object width="544" height="452" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="quality" value="high"><param name="allowfullscreen" value="true"><param name="src" value="http://static.hdslb.com/miniloader.swf"><param name="flashvars" value="aid=589182&amp;page=2"><param name="pluginspage" value="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"><embed width="544" height="452" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" quality="high" allowfullscreen="true" flashvars="aid=589182&amp;page=2" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></object>
-
-<p>三、黑猫警长</p>
-<object width="544" height="452" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="quality" value="high"><param name="allowfullscreen" value="true"><param name="src" value="http://static.hdslb.com/miniloader.swf"><param name="flashvars" value="aid=589182&amp;page=3"><param name="pluginspage" value="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"><embed width="544" height="452" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" quality="high" allowfullscreen="true" flashvars="aid=589182&amp;page=3" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></object>
-
-<p>四、阿凡提</p>
-<object width="544" height="452" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"><param name="quality" value="high"><param name="allowfullscreen" value="true"><param name="src" value="http://static.hdslb.com/miniloader.swf"><param name="flashvars" value="aid=589182&amp;page=4"><param name="pluginspage" value="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"><embed width="544" height="452" type="application/x-shockwave-flash" src="http://static.hdslb.com/miniloader.swf" quality="high" allowfullscreen="true" flashvars="aid=589182&amp;page=4" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"></object>
       
     </div>
     
@@ -249,18 +262,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2013/06/22/xiaojiaqi/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          长达8天的小假期
-        
-      </div>
-    </a>
   
-  
-    <a href="/2013/06/04/yanyezhiting/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">新海诚新作——《言叶之庭》</div>
+    <a href="/2017/03/18/song2vec/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MusicTaster——一种Song2Vec和Artist2Vec的实践</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -296,7 +300,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="xinjinbao" data-title="分享：《寻找中国本土动画源动力》——新京报出品" data-url="http://Jayveehe.github.io/2013/06/05/xinjinbao/"></div>
+	<div class="ds-thread" data-thread-key="hadoop-spark-notes" data-title="Hadoop Streaming和Spark的一些坑" data-url="http://Jayveehe.github.io/2017/05/06/hadoop-spark-notes/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
